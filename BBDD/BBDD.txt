@@ -1,142 +1,97 @@
-	-----BASE DE DATOS ALMAZEN-----
+-----BASE DE DATOS ALMAZEN-----
 CREATE SCHEMA `almazen` ;
 
 
-	___TABLA EMPRESAS_____
+_____TABLA USUARIOS________
 
-CREATE TABLE `almazen`.`empresas` (
+CREATE TABLE `almazen`.`usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `Nombre_Empresa` VARCHAR(45) NOT NULL,
+  `User` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(45) NULL,
+  `Rol` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
 
-ALTER TABLE `almazen`.`empresas` 
-CHANGE COLUMN `id` `id` INT(11) NOT NULL DEFAULT 1 ;
+
+_______TABLA EMPRESAS________
+
+CREATE TABLE `empresas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre_Empresa` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 
+_______TABLA EMPLEADOS________
 
-	_____TABLA EMPLEADOS______
-
-
-CREATE TABLE `almazen`.`empleados` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nombre_empleado` VARCHAR(45) NOT NULL,
-  `id_empresa` INT(11) NOT NULL,
+CREATE TABLE `empleados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_empresa` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `apellidos` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_empleados_empresas_idempresa` (`id_empresa` ASC),
-  CONSTRAINT `fk_empleados_empresas_idempresa`
-    FOREIGN KEY (`id_empresa`)
-    REFERENCES `almazen`.`empresas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  KEY `fk_empleados_empresas_idempresa` (`id_empresa`),
+  CONSTRAINT `fk_empleados_empresas_idempresa` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-	_____TABLA ÚTILES____
+_______TABLA ÚTILES_______
 
-CREATE TABLE `almazen`.`utiles` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idEmpresa` INT(11) NOT NULL,
-  `Codigo_Alquiler` VARCHAR(45) NOT NULL,
-  `Marca` VARCHAR(45) NOT NULL,
-  `Modelo` VARCHAR(45) NOT NULL,
-  `Categoria` VARCHAR(45) NOT NULL,
-  `estado` VARCHAR(100) NULL,
+CREATE TABLE `utiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idEmpresa` int(11) NOT NULL,
+  `Marca` varchar(45) NOT NULL,
+  `Modelo` varchar(45) NOT NULL,
+  `Categoria` varchar(45) NOT NULL,
+  `estado` varchar(100) DEFAULT NULL,
+  `Herramienta_Vehiculo` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_utiles_empresas_idempresa` (`idEmpresa` ASC),
-  CONSTRAINT `fk_utiles_empresa`
-    FOREIGN KEY (`idEmpresa`)
-    REFERENCES `almazen`.`empresas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  KEY `fk_utiles_empresas_idempresa` (`idEmpresa`),
+  CONSTRAINT `fk_utiles_empresa` FOREIGN KEY (`idEmpresa`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-	______TABLA EMPLE_HERRA_______
 
-CREATE TABLE `almazen`.`emple_herra` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idempleado` INT(11) NOT NULL,
-  `idutil` INT(11) NOT NULL,
-  `fecha_hora` DATETIME NOT NULL,
-  `isdevuelto` BIT NOT NULL,
-  `incidencia` VARCHAR(200) NULL,
+
+_______TABLA EMPLE_UTILES___________
+
+CREATE TABLE `emple_util` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idempleado` int(11) NOT NULL,
+  `idutil` int(11) NOT NULL,
+  `fecha_hora` datetime NOT NULL,
+  `isdevuelto` bit(1) NOT NULL,
+  `incidencia` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_empleherra_empleados_id` (`idempleado` ASC),
-  INDEX `fk_empleherra_utiles_id` (`idutil` ASC),
-  CONSTRAINT `fk_empleherra_empleados`
-    FOREIGN KEY (`idempleado`)
-    REFERENCES `almazen`.`empleados` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_empleherra_utiles`
-    FOREIGN KEY (`idutil`)
-    REFERENCES `almazen`.`utiles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+  KEY `fk_empleherra_empleados_id` (`idempleado`),
+  KEY `fk_empleherra_utiles_id` (`idutil`),
+  CONSTRAINT `fk_empleherra_empleados` FOREIGN KEY (`idempleado`) REFERENCES `empleados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_empleherra_utiles` FOREIGN KEY (`idutil`) REFERENCES `utiles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-	______TABLA CONTRATO_ALQUILER______
+_____Insertamos datos______
 
-CREATE TABLE `almazen`.`alquiler_utiles` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `idempresa` INT(11) NOT NULL,
-  `idutil` INT(11) NOT NULL,
-  `euros_dia` DOUBLE NOT NULL,
-  `inicio_contrato` DATE NOT NULL,
-  `final_contrato` DATE NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_alquiler_empresa_idempresa_id` (`idempresa` ASC),
-  INDEX `fk_alquiler_utiles_idutil_id` (`idutil` ASC),
-  CONSTRAINT `fk_alquiler_empresa_idempresa`
-    FOREIGN KEY (`idempresa`)
-    REFERENCES `almazen`.`empresas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_alquiler_utiles_idutil`
-    FOREIGN KEY (`idutil`)
-    REFERENCES `almazen`.`utiles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+INSERT INTO usuarios (user, password, rol)
+VALUES
+    ('admin', 'admin', 'admin'),
+    ('empleado', 'empleado', 'empleado');
 
 
-	_____ TABLA HERRAMIENTAS______
+INSERT INTO empresas (nombre_empresa)
+VALUES
+    ('Empresa A'),
+	  ('Empresa B'),
+    ('Empresa c');
 
-CREATE TABLE `almazen`.`herramientas` (
-  `idherramientas` INT NOT NULL,
-  PRIMARY KEY (`idherramientas`),
-  CONSTRAINT `fk_herramientas_utiles_id`
-    FOREIGN KEY (`idherramientas`)
-    REFERENCES `almazen`.`utiles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+INSERT INTO empleados (id_empresa, nombre, apellidos)
+VALUES
+    ('8', 'Antonio','Antunez'),
+	 ('8', 'Baltasar','Baeza'),
+    ('9', 'Carlos','Castro');
 
-
-	______ TABLA VEHICULOS______
-
-CREATE TABLE `almazen`.`vehiculos` (
-  `idvehiculo` INT NOT NULL,
-  `horas_uso` INT(11) NOT NULL,
-  PRIMARY KEY (`idvehiculo`),
-  CONSTRAINT `fk_vehiculos_utiles_id`
-    FOREIGN KEY (`idvehiculo`)
-    REFERENCES `almazen`.`utiles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
-	______TABLA REPOSTAJES______
-
-CREATE TABLE `almazen`.`repostajes` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idvehiculo` INT(11) NOT NULL,
-  `litros_totales` DOUBLE NULL,
-  `litros_repostados` DOUBLE NULL,
-  `fecha_hora` DATETIME NULL,
-  PRIMARY KEY (`id`, `idvehiculo`),
-  INDEX `fk_repostajes_vehiculos_id_idx` (`idvehiculo` ASC),
-  CONSTRAINT `fk_repostajes_vehiculos_id`
-    FOREIGN KEY (`idvehiculo`)
-    REFERENCES `almazen`.`vehiculos` (`idvehiculo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
-
-
+    INSERT INTO utiles (idempresa, Marca, Modelo, Categoria, Estado, Herramienta_Vehiculo)
+VALUES
+    ('8', 'Hilti','TE-60','Pistolete','','Herramienta'),
+	('8', 'Hilti','TE-100','Rompedor','','Herramienta'),
+    ('9', 'Caterpillar','Retro-MAX','Retroexcavadora','','Vehiculo'),
+    ('10', 'Bosch','GWS 20-230','Radial','','Herramienta');
+    
