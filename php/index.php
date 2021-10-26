@@ -12,7 +12,9 @@
     <h1>ALMA-ZEN</h1>
 
     <p>Inicio Sesión</p>
-<!-- PRUEBA 19.48 -->
+
+
+
     <?php
     include("conect_class.php");
 
