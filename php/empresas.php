@@ -1,17 +1,17 @@
 <?php
 include("conect_class.php");
 
-$id = $_GET['id']; // el id de la empresa
+$id_empresa = $_GET['id_empresa']; // el id_empresa de la empresa
 
 // 4. Y los mostramos tambien en el DOM
 
 $sql = "SELECT * FROM empresas
-    WHERE id = $id;
+    WHERE id_empresa = $id_empresa;
 ";
 $MyBBDD->consulta($sql);
 
 $fila = $MyBBDD->extraerRegistro();
-echo "<h1>" . $fila['Nombre_Empresa'] . "</h1>";
+echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@ echo "<h1>" . $fila['Nombre_Empresa'] . "</h1>";
     <link rel="stylesheet" href="/Alma-Zen/css/estilo.css">
     <title>
         <?php
-        echo $fila['Nombre_Empresa']; // El nombre de cada empresa aparecerá en la pestaña del navegador
+        echo $fila['nombre_empresa']; // El nombre de cada empresa aparecerá en la pestaña del navegador
         ?>
     </title>
 
@@ -33,37 +33,14 @@ echo "<h1>" . $fila['Nombre_Empresa'] . "</h1>";
 <body>
 
 
-    <?php
-    /*
-        PENDIENTE: Aquí irán apareciendo elementos <div> que agruparán los distintos
-        elementos intriducidos por formulario
-    */
-    ?>
 
-
-
-    <div id="formularios">
-        <div>
-            <h3>EMPLEADOS</h3>
-            <form action="">
-                <input type="text" value="">
-                <input type="submit" name="addEmple" value="insertar impleado">
-            </form>
-        </div>
-
-
-        <div>
-            <h3>ÚTILES</h3>
-            <form action="">
-                <input type="text" value="">
-                <input type="submit" name="addEmple" value="insertar impleado">
-            </form>
-        </div>
+    <div>
+        <h3>EMPLEADOS</h3>
+        <form method="POST">
+            <input type="text" name="nombre_empleado">
+            <input type="submit" name="addEmple" value="insertar impleado">
+        </form>
     </div>
-
-
-
-
 
 
 
