@@ -19,14 +19,14 @@ CREATE TABLE `almazen`.`empresas` (
 
 -- Empleados:
 CREATE TABLE `almazen`.`empleados` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_empresa` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_empleado` varchar(45) NOT NULL,
   `apellidos_empleado` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
+  `id_empresa` int(11) NOT NULL,
+  PRIMARY KEY (`id_empleado`),
   KEY `fk_empleados_empresas_idempresa` (`id_empresa`),
-  CONSTRAINT `fk_empleados_empresas_idempresa`
-  FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`)
+  CONSTRAINT `fk_empleados_empresas_idempresa` FOREIGN KEY (`id_empresa`)
+  REFERENCES `empresas` (`id_empresa`)
   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 

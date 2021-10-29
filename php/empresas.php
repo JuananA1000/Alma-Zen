@@ -32,31 +32,35 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
 
 <body>
 
+    <h3>Empleados</h3>
     <?php
     if (isset($_POST['addEmple'])) {
-        $nombre = $_POST['nombre'];
-        $apellidos = $_POST['apellidos'];
+        $nombre_empleado = $_POST['nombre_empleado'];
+        $apellidos_empleado = $_POST['apellidos_empleado'];
 
-        $sql = "INSERT INTO empleados (nombre, apellidos, id_empresa) 
-        VALUES
-        ('$nombre','$apellidos', '$id_empresa');
+        $sql = "INSERT INTO empleados (nombre_empleado, apellidos_empleado, id_empresa) 
+        VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
         ";
-
-        // INSERT INTO almazen.empleados (nombre_empleado, apellidos_empleado) VALUES ('Carlos','Castro');
 
         $MyBBDD->consulta($sql);
     }
 
+    $sql = "SELECT * FROM empleados
+        WHERE id_empresa = $id_empresa;
+    ";
+    $MyBBDD->consulta($sql);
+
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        echo $fila['nombre_empleado']." " .$fila['apellidos_empleado']. "<br>";
+    }
+
     ?>
-
-
-
 
     <div>
         <h3>EMPLEADOS</h3>
         <form method="POST">
-           <p> Nombre<input type="text" name="nombre"></p>
-           <p>Apellidos<input type="text" name="apellidos"></p>
+           <p> Nombre<input type="text" name="nombre_empleado"></p>
+           <p>Apellidos<input type="text" name="apellidos_empleado"></p>
             <input type="submit" name="addEmple" value="insertar impleado">
         </form>
     </div>
