@@ -34,15 +34,16 @@ CREATE TABLE `almazen`.`empleados` (
 CREATE TABLE `almazen`.`utiles` (
   `id_util` int(11) NOT NULL AUTO_INCREMENT,
   `id_empresa` int(11) NOT NULL,
-  `marca` varchar(45) NOT NULL,
-  `modelo` varchar(45) NOT NULL,
-  `categoria` varchar(45) NOT NULL,
-  `estado` varchar(100) DEFAULT NULL,
+  `marca_util` varchar(45) NOT NULL,
+  `modelo_util` varchar(45) NOT NULL,
+  `categoria_util` varchar(45) NOT NULL,
+  `estado_util` varchar(100) DEFAULT NULL,
   `herramienta_vehiculo` varchar(45) NOT NULL,
   PRIMARY KEY (`id_util`),
   KEY `fk_utiles_empresas_idempresa` (`id_empresa`),
   CONSTRAINT `fk_utiles_empresa`
-  FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`)
+  FOREIGN KEY (`id_empresa`)
+  REFERENCES `empresas` (`id_empresa`)
   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
