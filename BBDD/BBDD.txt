@@ -4,62 +4,68 @@ CREATE SCHEMA `almazen` ;
 -- Creamos las tablas:
 -- En primer lugar, de usuarios:
 CREATE TABLE `almazen`.`usuarios` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `User` VARCHAR(45) NOT NULL,
-  `Password` VARCHAR(45) NULL,
-  `Rol` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`));
+  `id_user` INT NOT NULL AUTO_INCREMENT,
+  `user` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NULL,
+  `rol` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_user`));
 
 -- Empresas:
 CREATE TABLE `almazen`.`empresas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre_Empresa` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
+  `id_empresa` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_empresa` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_empresa`)
 );
 
 -- Empleados:
 CREATE TABLE `almazen`.`empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_empresa` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellidos` varchar(45) NOT NULL,
+  `nombre_empleado` varchar(45) NOT NULL,
+  `apellidos_empleado` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_empleados_empresas_idempresa` (`id_empresa`),
   CONSTRAINT `fk_empleados_empresas_idempresa`
-  FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id`)
+  FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`)
   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- Útiles de la empresa:
 CREATE TABLE `almazen`.`utiles` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idEmpresa` int(11) NOT NULL,
-  `Marca` varchar(45) NOT NULL,
-  `Modelo` varchar(45) NOT NULL,
-  `Categoria` varchar(45) NOT NULL,
+  `id_util` int(11) NOT NULL AUTO_INCREMENT,
+  `id_empresa` int(11) NOT NULL,
+  `marca` varchar(45) NOT NULL,
+  `modelo` varchar(45) NOT NULL,
+  `categoria` varchar(45) NOT NULL,
   `estado` varchar(100) DEFAULT NULL,
-  `Herramienta_Vehiculo` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_utiles_empresas_idempresa` (`idEmpresa`),
+  `herramienta_vehiculo` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_util`),
+  KEY `fk_utiles_empresas_idempresa` (`id_empresa`),
   CONSTRAINT `fk_utiles_empresa`
-  FOREIGN KEY (`idEmpresa`) REFERENCES `empresas` (`id`)
+  FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`)
   ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- Y por último, la relación que recogerá el historial de las herramientas
 -- adquiridas por cada empleado:
 CREATE TABLE `almazen`.`emple_util` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idempleado` int(11) NOT NULL,
-  `idutil` int(11) NOT NULL,
+  `id_emple_util` int(11) NOT NULL AUTO_INCREMENT,
+  `id_empleado` int(11) NOT NULL,
+  `id_util` int(11) NOT NULL,
   `fecha_hora` datetime NOT NULL,
-  `isdevuelto` bit(1) NOT NULL,
+  `is_devuelto` bit(1) NOT NULL,
   `incidencia` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_empleherra_empleados_id` (`idempleado`),
-  KEY `fk_empleherra_utiles_id` (`idutil`),
-  CONSTRAINT `fk_empleherra_empleados` FOREIGN KEY (`idempleado`) REFERENCES `empleados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_empleherra_utiles` FOREIGN KEY (`idutil`) REFERENCES `utiles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`id_emple_util`),
+  KEY `fk_empleherra_empleados_id` (`id_empleado`),
+  KEY `fk_empleherra_utiles_id` (`id_util`),
+  CONSTRAINT `fk_empleherra_empleados`
+  FOREIGN KEY (`id_empleado`)
+  REFERENCES `empleados` (`id_empleado`)
+  ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_empleherra_utiles`
+  FOREIGN KEY (`id_util`)
+  REFERENCES `utiles` (`id_util`)
+  ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- A continuación, insertamos  datos a cada una de las tablas:
@@ -74,11 +80,7 @@ VALUES
 	  ('Empresa B'),
     ('Empresa c');
 
-INSERT INTO almazen.empleados (id_empresa, nombre, apellidos) -- 
-VALUES
-    ('8', 'Antonio','Antunez'),
-	 ('8', 'Baltasar','Baeza'),
-    ('9', 'Carlos','Castro');
+INSERT INTO almazen.empleados (nombre_empleado, apellidos_empleado) VALUES ('Carlos','Castro');
 
 INSERT INTO almazen.utiles (idempresa, Marca, Modelo, Categoria, Estado, Herramienta_Vehiculo)
 VALUES
