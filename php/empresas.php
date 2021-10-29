@@ -1,17 +1,17 @@
 <?php
 include("conect_class.php");
 
-$id_empresa = $_GET['id_empresa']; // el id_empresa de la empresa
+$id = $_GET['id']; // el id de la empresa
 
 // 4. Y los mostramos tambien en el DOM
 
 $sql = "SELECT * FROM empresas
-    WHERE id_empresa = $id_empresa;
+    WHERE id = $id;
 ";
 $MyBBDD->consulta($sql);
 
 $fila = $MyBBDD->extraerRegistro();
-echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
+echo "<h1>" . $fila['Nombre_Empresa'] . "</h1>";
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +24,14 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
     <link rel="stylesheet" href="/Alma-Zen/css/estilo.css">
     <title>
         <?php
-        echo $fila['nombre_empresa']; // El nombre de cada empresa aparecerá en la pestaña del navegador
+        echo $fila['Nombre_Empresa']; // El nombre de cada empresa aparecerá en la pestaña del navegador
         ?>
     </title>
 
 </head>
 
 <body>
+
 
 
 

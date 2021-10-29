@@ -1,9 +1,8 @@
------BASE DE DATOS ALMAZEN-----
+-- Creamos la base de datos
 CREATE SCHEMA `almazen` ;
 
-
-_____TABLA USUARIOS________
-
+-- Creamos las tablas:
+-- En primer lugar, de usuarios:
 CREATE TABLE `almazen`.`usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `User` VARCHAR(45) NOT NULL,
@@ -11,32 +10,28 @@ CREATE TABLE `almazen`.`usuarios` (
   `Rol` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
 
-
-_______TABLA EMPRESAS________
-
-CREATE TABLE `empresas` (
+-- Empresas:
+CREATE TABLE `almazen`.`empresas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre_Empresa` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+);
 
-
-_______TABLA EMPLEADOS________
-
-CREATE TABLE `empleados` (
+-- Empleados:
+CREATE TABLE `almazen`.`empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_empresa` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellidos` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_empleados_empresas_idempresa` (`id_empresa`),
-  CONSTRAINT `fk_empleados_empresas_idempresa` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `fk_empleados_empresas_idempresa`
+  FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id`)
+  ON DELETE NO ACTION ON UPDATE NO ACTION
+);
 
-
-_______TABLA ÚTILES_______
-
-CREATE TABLE `utiles` (
+-- Útiles de la empresa:
+CREATE TABLE `almazen`.`utiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idEmpresa` int(11) NOT NULL,
   `Marca` varchar(45) NOT NULL,
@@ -46,14 +41,14 @@ CREATE TABLE `utiles` (
   `Herramienta_Vehiculo` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_utiles_empresas_idempresa` (`idEmpresa`),
-  CONSTRAINT `fk_utiles_empresa` FOREIGN KEY (`idEmpresa`) REFERENCES `empresas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `fk_utiles_empresa`
+  FOREIGN KEY (`idEmpresa`) REFERENCES `empresas` (`id`)
+  ON DELETE NO ACTION ON UPDATE NO ACTION
+);
 
-
-
-_______TABLA EMPLE_UTILES___________
-
-CREATE TABLE `emple_util` (
+-- Y por último, la relación que recogerá el historial de las herramientas
+-- adquiridas por cada empleado:
+CREATE TABLE `almazen`.`emple_util` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idempleado` int(11) NOT NULL,
   `idutil` int(11) NOT NULL,
@@ -65,33 +60,29 @@ CREATE TABLE `emple_util` (
   KEY `fk_empleherra_utiles_id` (`idutil`),
   CONSTRAINT `fk_empleherra_empleados` FOREIGN KEY (`idempleado`) REFERENCES `empleados` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_empleherra_utiles` FOREIGN KEY (`idutil`) REFERENCES `utiles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
-
-_____Insertamos datos______
-
-INSERT INTO usuarios (user, password, rol)
+-- A continuación, insertamos  datos a cada una de las tablas:
+INSERT INTO almazen.usuarios (user, password, rol)
 VALUES
     ('admin', 'admin', 'admin'),
     ('empleado', 'empleado', 'empleado');
 
-
-INSERT INTO empresas (nombre_empresa)
+INSERT INTO almazen.empresas (nombre_empresa)
 VALUES
     ('Empresa A'),
 	  ('Empresa B'),
     ('Empresa c');
 
-INSERT INTO empleados (id_empresa, nombre, apellidos)
+INSERT INTO almazen.empleados (id_empresa, nombre, apellidos) -- 
 VALUES
     ('8', 'Antonio','Antunez'),
 	 ('8', 'Baltasar','Baeza'),
     ('9', 'Carlos','Castro');
 
-    INSERT INTO utiles (idempresa, Marca, Modelo, Categoria, Estado, Herramienta_Vehiculo)
+INSERT INTO almazen.utiles (idempresa, Marca, Modelo, Categoria, Estado, Herramienta_Vehiculo)
 VALUES
     ('8', 'Hilti','TE-60','Pistolete','','Herramienta'),
 	('8', 'Hilti','TE-100','Rompedor','','Herramienta'),
     ('9', 'Caterpillar','Retro-MAX','Retroexcavadora','','Vehiculo'),
     ('10', 'Bosch','GWS 20-230','Radial','','Herramienta');
-    
