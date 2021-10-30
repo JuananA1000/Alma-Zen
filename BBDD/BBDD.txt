@@ -81,11 +81,11 @@ VALUES
 	  ('Empresa B'),
     ('Empresa c');
 
-INSERT INTO almazen.empleados (nombre_empleado, apellidos_empleado) VALUES ('Carlos','Castro');
+INSERT INTO almazen.empleados (nombre_empleado, apellidos_empleado, id_empresa) VALUES ('Carlos','Castro', '1');
 
-INSERT INTO almazen.utiles (idempresa, Marca, Modelo, Categoria, Estado, Herramienta_Vehiculo)
+INSERT INTO almazen.utiles (id_empresa, marca_util, modelo_util, categoria_util, estado_util, herramienta_vehiculo)
 VALUES
-    ('8', 'Hilti','TE-60','Pistolete','','Herramienta'),
-	('8', 'Hilti','TE-100','Rompedor','','Herramienta'),
-    ('9', 'Caterpillar','Retro-MAX','Retroexcavadora','','Vehiculo'),
-    ('10', 'Bosch','GWS 20-230','Radial','','Herramienta');
+    ('3', 'Hilti','TE-60','Pistolete','','Herramienta'),
+	('3', 'Hilti','TE-100','Rompedor','','Herramienta'),
+    ('2', 'Caterpillar','Retro-MAX','Retroexcavadora','','Vehiculo'),
+    ('1', 'Bosch','GWS 20-230','Radial','','Herramienta');
