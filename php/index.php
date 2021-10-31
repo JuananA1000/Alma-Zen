@@ -12,8 +12,10 @@
     <h1>ALMA-ZEN</h1>
 
     <p>Inicio Sesión</p>
-
-
+    <!-- 
+        TUTORIAL inicio sesión: https://www.youtube.com/watch?v=9BLoMGO-XcU
+        TUTORIAL roles: https://www.youtube.com/watch?v=LL66QTP3txE
+    -->
 
     <?php
     include("conect_class.php");
@@ -29,7 +31,7 @@
 
     while ($fila = $MyBBDD->extraerRegistro()) {
         $id_empresa = $fila['id_empresa']; // id_empresa de la empresa
-        echo "Empresa: <a href='empresas.php?id_empresa=$id_empresa'>".$fila['nombre_empresa']. "</a><br>";
+        echo "Empresa: <a href='empresas.php?id_empresa=$id_empresa'>" . $fila['nombre_empresa'] . "</a><br>";
     }
     ?>
 
