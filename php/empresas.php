@@ -32,81 +32,81 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
 
 <body>
 
-    <h4>Empleados</h4>
     <?php
+    echo "<h2> Empleados</h2>"; // ------------ IMPRIMIMOS LOS EMPLEADOS ----------------
+
     if (isset($_POST['addEmple'])) {
         $nombre_empleado = $_POST['nombre_empleado'];
         $apellidos_empleado = $_POST['apellidos_empleado'];
 
         $sql = "INSERT INTO empleados (nombre_empleado, apellidos_empleado, id_empresa) 
-        VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
-        ";
+    VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
+    ";
 
         $MyBBDD->consulta($sql);
     }
 
     $sql = "SELECT * FROM empleados
-        WHERE id_empresa = $id_empresa;
-    ";
+    WHERE id_empresa = $id_empresa;
+";
     $MyBBDD->consulta($sql);
 
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo $fila['nombre_empleado'] . " " . $fila['apellidos_empleado'] . "<br>";
+        echo $fila['nombre_empleado'] . " - " . $fila['apellidos_empleado'] . "<br>";
+    }
+
+    echo "<h2> Herramientas</h2>"; // ------------ IMPRIMIMOS LOS EMPLEADOS ----------------
+
+    if (isset($_POST['addHerr'])) {
+        $marca_util = $_POST['marca_util'];
+        $modelo_util = $_POST['modelo_util'];
+        $categoria_util = $_POST['categoria_util'];
+        $herramienta_vehiculo = $_POST['herramienta_vehiculo'];
+        $estado_util = $_POST['estado_util'];
+
+        $sql = "INSERT INTO utiles (marca_util, modelo_util, categoria_util, estado_util, herramienta_vehiculo, id_empresa) 
+            VALUES ('$marca_util','$modelo_util','$categoria_util','$estado_util','$herramienta_vehiculo', '$id_empresa');
+        ";
+        $MyBBDD->consulta($sql);
+
+        $sql = "SELECT * FROM utiles
+        WHERE id_empresa = $id_empresa;
+    ";
+        $MyBBDD->consulta($sql);
+
+        while ($fila = $MyBBDD->extraerRegistro()) {
+            echo $fila['marca_util'] . " - " .
+                $fila['modelo_util'] . " - " .
+                $fila['categoria_util'] . " - " .
+                $fila['estado_util'] . " - " .
+                $fila['herramienta_vehiculo'] . "<br>";
+        }
     }
     ?>
-
     <div>
         <form method="POST">
-            <p> Nombre<input type="text" name="nombre_empleado"></p>
-            <p>Apellidos<input type="text" name="apellidos_empleado"></p>
+            <fieldset>
+                <legend>Empleados</legend>
+                <p> Nombre<input type="text" name="nombre_empleado"></p>
+                <p>Apellidos<input type="text" name="apellidos_empleado"></p>
+            </fieldset>
             <input type="submit" name="addEmple" value="insertar empleado">
         </form>
     </div>
 
-
-    <?php
-
-    if (isset($_POST['addHerr'])) { // PENDIENTE: Arreglar esta inserción
-        $marca_util = $_POST['marca_util'];
-        $modelo_util= $_POST['modelo_util'];
-        $categoria_util= $_POST['categoria_util'];
-        $estado_util= $_POST['estado_util'];
-        $herramienta_vehiculo= $_POST['herramienta_vehiculo'];
-        
-
-        $sql = "INSERT INTO utiles (marca_util, modelo_util, categoria_util, estado_util) 
-            VALUES ('$marca_util','$modelo_util','$categoria_util','$estado_util', '$id_empresa');
-        ";
-        $MyBBDD->consulta($sql);
-
-        
-    $MyBBDD->consulta($sql);
-
-    while ($fila = $MyBBDD->extraerRegistro()) {
-        echo $fila['marca_util'] . "<br>";
-    }
-    }
-    ?>
-
     <div>
-        <h4>HERRAMIENTAS / VEHÍCULOS</h4>
-        <form method="post">
-            <p>Marca <input type="text" name="marca_util"></p>
-            <p>Modelo <input type="text" name="modelo_util"></p>
-            <p>Categoría <input type="text" name="categoria_util"></p>
-            <p>Estado:<input type="text" name="estado_util"></p>
-            <p>herr <input type="text" name="herramienta_vehiculo"></p>
-            <input type="submit" name="addHerr" value="insertar herramienta">
+        <form method="POST">
+            <fieldset>
+                <legend>Herramientas</legend>
+                <p>Marca: <input type="text" name="marca_util"></p>
+                <p>Modelo: <input type="text" name="modelo_util"></p>
+                <p>Catgoría: <input type="text" name="categoria_util"></p>
+                <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
+                <p>Estado: <input type="text" name="estado_util"></p>
+            </fieldset>
+            <input type="submit" name="addHerr" value="insertar HERRAMIENTA">
         </form>
     </div>
-
-
-
-
-
-
-
-
 </body>
 
 </html>

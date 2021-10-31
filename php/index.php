@@ -17,6 +17,9 @@
         TUTORIAL roles: https://www.youtube.com/watch?v=LL66QTP3txE
     -->
 
+
+
+
     <?php
     include("conect_class.php");
 
@@ -36,10 +39,9 @@
     ?>
 
     <form method="POST">
-        <p>Nombre Empresa:<input type="text" name="nombre_empresa" />
+        <p>Nombre Empresa: <input type="text" name="nombre_empresa" />
             <input type="submit" value="Insertar">
         </p>
-
     </form>
 
     <footer>Juan Antonio Amil y Antonio Marín</footer>
