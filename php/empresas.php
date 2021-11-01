@@ -21,22 +21,18 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>
         <?php
         echo $fila['nombre_empresa']; // El nombre de cada empresa aparecerá en la pestaña del navegador
         ?>
     </title>
-
-    <style>
-        
-    </style>
-
 </head>
 
 <body>
+    <h2> Empleados</h2>
 
     <?php
-    echo "<h2> Empleados</h2>"; // ------------ IMPRIMIMOS LOS EMPLEADOS ----------------
 
     if (isset($_POST['addEmple'])) {
         $nombre_empleado = $_POST['nombre_empleado'];
@@ -50,15 +46,19 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
     }
 
     $sql = "SELECT * FROM empleados
-    WHERE id_empresa = $id_empresa;
-";
+        WHERE id_empresa = $id_empresa;
+    ";
     $MyBBDD->consulta($sql);
 
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo $fila['nombre_empleado'] . " - " . $fila['apellidos_empleado'] . "<br>";
+        echo "<div id='contenidoTabla' >".$fila['nombre_empleado'] . " " .
+        $fila['apellidos_empleado'] . "<br></div>";
     }
+    ?>
 
-    echo "<h2> Herramientas</h2>"; // ------------ IMPRIMIMOS LAS HERRAMIENTAS ----------------
+    <h2> Herramientas</h2>
+
+    <?php
 
     if (isset($_POST['addHerr'])) {
         $marca_util = $_POST['marca_util'];
@@ -86,30 +86,34 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
         }
     }
     ?>
-    <div>
+    
+    <div >
         <form method="POST">
             <fieldset>
                 <legend>Empleados</legend>
                 <p>Nombre: <input type="text" name="nombre_empleado"></p>
                 <p>Apellidos: <input type="text" name="apellidos_empleado"></p>
+                <input type="submit" name="addEmple" value="Insertar Empleado">
+        
             </fieldset>
-            <input type="submit" name="addEmple" value="Insertar Empleado">
         </form>
-    </div>
-
-    <div>
+    
         <form method="POST">
             <fieldset>
                 <legend>Herramientas</legend>
                 <p>Marca: <input type="text" name="marca_util"></p>
                 <p>Modelo: <input type="text" name="modelo_util"></p>
-                <p>Catgoría: <input type="text" name="categoria_util"></p>
+                <p>Categoría: <input type="text" name="categoria_util"></p>
                 <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
                 <p>Estado: <input type="text" name="estado_util"></p>
+                <input type="submit" name="addHerr" value="Insertar Herramienta">
+        
             </fieldset>
-            <input type="submit" name="addHerr" value="Insertar Herramienta">
         </form>
     </div>
+
+    <footer>Juan Antonio Amil y Antonio Marín</footer>
+
 </body>
 
 </html>
