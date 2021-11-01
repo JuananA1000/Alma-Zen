@@ -21,12 +21,15 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Alma-Zen/css/estilo.css">
     <title>
         <?php
         echo $fila['nombre_empresa']; // El nombre de cada empresa aparecerá en la pestaña del navegador
         ?>
     </title>
+
+    <style>
+        
+    </style>
 
 </head>
 
@@ -55,7 +58,7 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
         echo $fila['nombre_empleado'] . " - " . $fila['apellidos_empleado'] . "<br>";
     }
 
-    echo "<h2> Herramientas</h2>"; // ------------ IMPRIMIMOS LOS EMPLEADOS ----------------
+    echo "<h2> Herramientas</h2>"; // ------------ IMPRIMIMOS LAS HERRAMIENTAS ----------------
 
     if (isset($_POST['addHerr'])) {
         $marca_util = $_POST['marca_util'];
@@ -87,10 +90,10 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
         <form method="POST">
             <fieldset>
                 <legend>Empleados</legend>
-                <p> Nombre<input type="text" name="nombre_empleado"></p>
-                <p>Apellidos<input type="text" name="apellidos_empleado"></p>
+                <p>Nombre: <input type="text" name="nombre_empleado"></p>
+                <p>Apellidos: <input type="text" name="apellidos_empleado"></p>
             </fieldset>
-            <input type="submit" name="addEmple" value="insertar empleado">
+            <input type="submit" name="addEmple" value="Insertar Empleado">
         </form>
     </div>
 
@@ -104,7 +107,7 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
                 <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
                 <p>Estado: <input type="text" name="estado_util"></p>
             </fieldset>
-            <input type="submit" name="addHerr" value="insertar HERRAMIENTA">
+            <input type="submit" name="addHerr" value="Insertar Herramienta">
         </form>
     </div>
 </body>
