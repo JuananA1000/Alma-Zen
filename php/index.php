@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (!isset($_SESSION['estado'])) { //creamos la variable sesion que usaremos para ver si estamos logeados
+    $_SESSION['estado'] = 0;
+}
+    // estado = 0 -> sin logear
+    // estado = 1 O DISTINTO DE 0 ->  logeado
+
+include 'conect_class.php'; // MUY IMPORTANTE.
+
+
+?> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,11 +30,44 @@
         TUTORIAL roles: https://www.youtube.com/watch?v=LL66QTP3txE
     -->
 
-
-
-
     <?php
-    include("conect_class.php");
+
+//      --- SI PULSAMOS EL BOTON INICIAR SESION
+if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
+ 
+    $user = $_POST["user"];
+    $password = $_POST["password"];
+
+
+
+//      --- COMPROBAMOS QUE EL USUARIO PERTENECE A LA BBDD
+    $consulta = "SELECT * FROM usuario WHERE nombreUsuario='$user' AND contrasenna='$password';";
+    $MyBBDD->consulta($consulta);
+    $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+
+    if ($fila == false) { //si el logeo falla
+        echo "Datos incorrectos";
+     }  else { // si el logeo es exitoso
+        $_SESSION['estado'] = $fila['id_user'];
+        $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
+        echo  $_SESSION['estado'];
+         
+         echo 'Sesión iniciada con éxito. Estado: '.  $_SESSION['estado'];
+         $_SESSION['user'] = $user;
+         $_SESSION['password'] = $password;
+         echo $_SESSION['user'];
+
+         //AÚN ESTÁ PENDIENTE DE PROBARLO. HAY QUE INSERTAR DATOS EN LA BBDD
+
+         //TAMBIÉN FALTA HACER LA PARTE DEL REGISTRO. PERO ANTES HAY QUE TOCAR LA TABLA USUARIOS DE LA BBDD
+
+        
+     }
+}
+
+
+
+   
 
     if (isset($_POST['nombre_empresa'])) {
         $nombre_empresa = $_POST['nombre_empresa'];
@@ -46,6 +91,8 @@
     </form>
 
     <footer>Juan Antonio Amil y Antonio Marín</footer>
+
+
 </body>
 
 </html>
