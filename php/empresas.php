@@ -39,9 +39,8 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
         $apellidos_empleado = $_POST['apellidos_empleado'];
 
         $sql = "INSERT INTO empleados (nombre_empleado, apellidos_empleado, id_empresa) 
-    VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
-    ";
-
+            VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
+        ";
         $MyBBDD->consulta($sql);
     }
 
@@ -71,19 +70,19 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
             VALUES ('$marca_util','$modelo_util','$categoria_util','$estado_util','$herramienta_vehiculo', '$id_empresa');
         ";
         $MyBBDD->consulta($sql);
-
-        $sql = "SELECT * FROM utiles
+    }
+    
+    $sql = "SELECT * FROM utiles
         WHERE id_empresa = $id_empresa;
     ";
-        $MyBBDD->consulta($sql);
+    $MyBBDD->consulta($sql);
 
-        while ($fila = $MyBBDD->extraerRegistro()) {
-            echo $fila['marca_util'] . " - " .
-                $fila['modelo_util'] . " - " .
-                $fila['categoria_util'] . " - " .
-                $fila['estado_util'] . " - " .
-                $fila['herramienta_vehiculo'] . "<br>";
-        }
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        echo $fila['marca_util'] . " - " .
+            $fila['modelo_util'] . " - " .
+            $fila['categoria_util'] . " - " .
+            $fila['estado_util'] . " - " .
+            $fila['herramienta_vehiculo'] . "<br>";
     }
     ?>
 
@@ -111,14 +110,12 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
                         <option value="Estropeado">Estropeado</option>
                     </select>
                 </p>
-
                 <input type="submit" name="addHerr" value="Insertar Herramienta">
-
-
             </fieldset>
         </form>
     </div>
 
+    <hr>
     <footer>Juan Antonio Amil y Antonio Marín</footer>
 
 </body>
