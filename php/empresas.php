@@ -51,8 +51,8 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
     $MyBBDD->consulta($sql);
 
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo "<div id='contenidoTabla' >".$fila['nombre_empleado'] . " " .
-        $fila['apellidos_empleado'] . "<br></div>";
+        echo "<div id='contenidoTabla' >" . $fila['nombre_empleado'] . " " .
+            $fila['apellidos_empleado'] . "<br></div>";
     }
     ?>
 
@@ -86,18 +86,18 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
         }
     }
     ?>
-    
-    <div >
+
+    <div>
         <form method="POST">
             <fieldset>
                 <legend>Empleados</legend>
                 <p>Nombre: <input type="text" name="nombre_empleado"></p>
                 <p>Apellidos: <input type="text" name="apellidos_empleado"></p>
                 <input type="submit" name="addEmple" value="Insertar Empleado">
-        
+
             </fieldset>
         </form>
-    
+
         <form method="POST">
             <fieldset>
                 <legend>Herramientas</legend>
@@ -105,9 +105,16 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
                 <p>Modelo: <input type="text" name="modelo_util"></p>
                 <p>Categoría: <input type="text" name="categoria_util"></p>
                 <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
-                <p>Estado: <input type="text" name="estado_util"></p>
+                <p>Estado: <select name="estado_util">
+                        <option value="Ocupado">Ocupado</option>
+                        <option value="Libre">Libre</option>
+                        <option value="Estropeado">Estropeado</option>
+                    </select>
+                </p>
+
                 <input type="submit" name="addHerr" value="Insertar Herramienta">
-        
+
+
             </fieldset>
         </form>
     </div>
