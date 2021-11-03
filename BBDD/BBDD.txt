@@ -76,10 +76,12 @@ CREATE TABLE `almazen`.`emple_util` (
 );
 
 -- A continuación, insertamos  datos a cada una de las tablas:
-INSERT INTO almazen.usuarios (user, password, rol)
+INSERT INTO almazen.usuarios (id_empresa, user, email, password, rol)
 VALUES
-    ('admin', 'admin', 'admin'),
-    ('empleado', 'empleado', 'empleado');
+    ('1', 'admin', 'admin@admin.com', 'admin', 'admin'),
+    ('1', 'empleado', 'emple@emple.com', 'empleado', 'empleado');
+
+     
 
 INSERT INTO almazen.empresas (nombre_empresa)
 VALUES
