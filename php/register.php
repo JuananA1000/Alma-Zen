@@ -14,8 +14,11 @@
 
 <form method="POST" action="index.php">
         <input type="text" required name="user" placeholder="Usuario*">
+        <input type="text" required name="email" placeholder="e-mail*">
         <input type="password" required name="password" placeholder="Contraseña*">
         <input type="text" required name="empresa" placeholder="Empresa*">
+        <input type="text" required name="rol" placeholder="Rol*">
+        <!-- ~~~~~~~~~~~ DE MOMENTO, METEMOS LA ID DE LA EMPRESA ~~~~~~~~~~~~4 -->
         <!-- A ver como tratamos la empresa. Si pidiendo la ID en el formulario, o haciendo un select de la id 
              where nombre = nombre -->
 

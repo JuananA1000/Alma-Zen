@@ -19,7 +19,7 @@
         <br><br>
         <input type="submit" value="Iniciar sesión" name="btn-ini">
     </form>
-    <form action="registro.php" method="post">
+    <form action="register.php" method="post">
         <input type="submit" value="Registrarse" name="btn-gotoreg">
     </form>
     <?php

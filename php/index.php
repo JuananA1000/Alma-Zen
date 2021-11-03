@@ -3,13 +3,13 @@ session_start();
 if (!isset($_SESSION['estado'])) { //creamos la variable sesion que usaremos para ver si estamos logeados
     $_SESSION['estado'] = 0;
 }
-    // estado = 0 -> sin logear
-    // estado = 1 O DISTINTO DE 0 ->  logeado
+// estado = 0 -> sin logear
+// estado = 1 O DISTINTO DE 0 ->  logeado
 
 include 'conect_class.php'; // MUY IMPORTANTE.
 
 
-?> 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +20,10 @@ include 'conect_class.php'; // MUY IMPORTANTE.
     <link rel="stylesheet" href="style.css">
     <title>Inicio</title>
 </head>
+<!-- Imprimimos el boton Iniciar sesion -->
+<form method="post" action="login.php">
+    <input type="submit" value="Iniciar Sesión" name="inicia-sesion">
+</form>
 
 <body>
     <h1>ALMA-ZEN</h1>
@@ -32,42 +36,68 @@ include 'conect_class.php'; // MUY IMPORTANTE.
 
     <?php
 
-//      --- SI PULSAMOS EL BOTON INICIAR SESION
-if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
- 
+    //      --- SI PULSAMOS EL BOTON INICIAR SESION
+    if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
+
+        $user = $_POST["user"];
+        $password = $_POST["password"];
+
+
+
+        //      --- COMPROBAMOS QUE EL USUARIO PERTENECE A LA BBDD
+        $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
+        $MyBBDD->consulta($consulta);
+        $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+
+        if ($fila == false) { //si el logeo falla
+            echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado']. ' </h1><br>';
+        } else { // si el logeo es exitoso
+            $_SESSION['estado'] = $fila['id_user'];
+            $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
+
+            echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado']. ' </h1><br>';
+            $_SESSION['user'] = $user;
+            $_SESSION['password'] = $password;
+            echo $_SESSION['user'];
+
+            //AÚN ESTÁ PENDIENTE DE PROBARLO. HAY QUE INSERTAR DATOS EN LA BBDD
+
+            //TAMBIÉN FALTA HACER LA PARTE DEL REGISTRO. PERO ANTES HAY QUE TOCAR LA TABLA USUARIOS DE LA BBDD
+
+        }
+    }
+
+    //  RECIBIMOS LOS DATOS -- DE REGISTRO -- Y LOS METEMOS EN LA BBDD
+if (
+    isset($_POST["btn-reg"])
+) {
+    $empresa = $_POST["empresa"];
     $user = $_POST["user"];
+    $email = $_POST["email"];
     $password = $_POST["password"];
+    $rol = $_POST["rol"];
 
 
+    //      ---- INSERTAMOS LOS DATOS   ---
+    $inserta = "INSERT INTO usuarios (id_empresa, user, email, password, rol) VALUES ('$empresa', '$user','$email','$password', '$rol');";
+    echo $inserta;
+    $MyBBDD->consulta($inserta);
+   // $_COOKIE['inicio'] = 1; Esta cookie juraría que no hace nada, pero la dejo de momento porsiaca
 
-//      --- COMPROBAMOS QUE EL USUARIO PERTENECE A LA BBDD
-    $consulta = "SELECT * FROM usuario WHERE nombreUsuario='$user' AND contrasenna='$password';";
-    $MyBBDD->consulta($consulta);
-    $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-
-    if ($fila == false) { //si el logeo falla
-        echo "Datos incorrectos";
-     }  else { // si el logeo es exitoso
-        $_SESSION['estado'] = $fila['id_user'];
-        $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
-        echo  $_SESSION['estado'];
-         
-         echo 'Sesión iniciada con éxito. Estado: '.  $_SESSION['estado'];
-         $_SESSION['user'] = $user;
-         $_SESSION['password'] = $password;
-         echo $_SESSION['user'];
-
-         //AÚN ESTÁ PENDIENTE DE PROBARLO. HAY QUE INSERTAR DATOS EN LA BBDD
-
-         //TAMBIÉN FALTA HACER LA PARTE DEL REGISTRO. PERO ANTES HAY QUE TOCAR LA TABLA USUARIOS DE LA BBDD
-
-        
-     }
+     //      ---- SACAMOS LA ID DEL USUARIO   ---
+     // ------------ ESTO NOS SERVIRÁ PARA NAVEGAR POR LA PÁGINA REGISTRADOS
+     $consulta = "SELECT id_user FROM usuarios WHERE user='$user' AND password='$password';";
+     $MyBBDD->consulta($consulta);
+     $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+     $_SESSION['estado'] = $fila['id_user'];
+     $_SESSION['id'] = $fila['id_user'];
+     echo   '<br><h1>Registrados con id nº '.$_SESSION['estado'].'</h1><br>';
 }
 
 
 
-   
+
+
 
     if (isset($_POST['nombre_empresa'])) {
         $nombre_empresa = $_POST['nombre_empresa'];
