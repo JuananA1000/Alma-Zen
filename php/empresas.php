@@ -86,7 +86,10 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
             $fila['categoria_util'] . " - " .
             $fila['estado_util'] . " - " .
             $fila['herramienta_vehiculo'] . 
-            "<button>✔️</button> <button>❌</button> <button>🛠️</button>"."</p>";
+            "<button id='btnLibre'>✔️</button>
+            <button id='btnOcupado'>❌</button>
+            <button id='btnReparar'>🛠️</button>".
+            "</p>";
     }
     echo "</div>";
     ?>
@@ -123,6 +126,7 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
     <hr>
     <footer>Juan Antonio Amil y Antonio Marín</footer>
 
+    <script src="main.js"></script>
 </body>
 
 </html>
