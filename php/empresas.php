@@ -11,7 +11,7 @@ $sql = "SELECT * FROM empresas
 $MyBBDD->consulta($sql);
 
 $fila = $MyBBDD->extraerRegistro();
-echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
+echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
 </head>
 
 <body>
-    <h2> Empleados</h2>
+    <h3 class="cabecera"> Empleados</h3>
 
     <?php
 
@@ -49,13 +49,15 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
     ";
     $MyBBDD->consulta($sql);
 
+    echo "<div class='contenidoTabla'>";
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo "<div id='contenidoTabla' >" . $fila['nombre_empleado'] . " " .
-            $fila['apellidos_empleado'] . "<br></div>";
+        echo "<p>" . $fila['nombre_empleado'] . " " .
+            $fila['apellidos_empleado'] . "</p>";
     }
+    echo "</div>"
     ?>
 
-    <h2> Herramientas</h2>
+    <h3 class="cabecera"> Herramientas</h3>
 
     <?php
 
@@ -71,23 +73,26 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
         ";
         $MyBBDD->consulta($sql);
     }
-    
+
     $sql = "SELECT * FROM utiles
         WHERE id_empresa = $id_empresa;
     ";
     $MyBBDD->consulta($sql);
 
+    echo "<div class='contenidoTabla'>";
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo $fila['marca_util'] . " - " .
+        echo "<p>" . $fila['marca_util'] . " - " .
             $fila['modelo_util'] . " - " .
             $fila['categoria_util'] . " - " .
             $fila['estado_util'] . " - " .
-            $fila['herramienta_vehiculo'] . "<br>";
+            $fila['herramienta_vehiculo'] . 
+            "<button>✔️</button> <button>❌</button> <button>🛠️</button>"."</p>";
     }
+    echo "</div>";
     ?>
 
-    <div>
-        <form method="POST">
+    <div class="contenedorFormularios">
+        <form method="POST" class="formulario">
             <fieldset>
                 <legend>Empleados</legend>
                 <p>Nombre: <input type="text" name="nombre_empleado"></p>
@@ -97,7 +102,7 @@ echo "<h1>" . $fila['nombre_empresa'] . "</h1>";
             </fieldset>
         </form>
 
-        <form method="POST">
+        <form method="POST" class="formulario">
             <fieldset>
                 <legend>Herramientas</legend>
                 <p>Marca: <input type="text" name="marca_util"></p>

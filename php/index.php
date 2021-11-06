@@ -50,12 +50,12 @@ include 'conect_class.php'; // MUY IMPORTANTE.
         $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
 
         if ($fila == false) { //si el logeo falla
-            echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado']. ' </h1><br>';
+            echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
         } else { // si el logeo es exitoso
             $_SESSION['estado'] = $fila['id_user'];
             $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
 
-            echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado']. ' </h1><br>';
+            echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
             $_SESSION['user'] = $user;
             $_SESSION['password'] = $password;
             echo $_SESSION['user'];
@@ -68,31 +68,31 @@ include 'conect_class.php'; // MUY IMPORTANTE.
     }
 
     //  RECIBIMOS LOS DATOS -- DE REGISTRO -- Y LOS METEMOS EN LA BBDD
-if (
-    isset($_POST["btn-reg"])
-) {
-    $empresa = $_POST["empresa"];
-    $user = $_POST["user"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $rol = $_POST["rol"];
+    if (
+        isset($_POST["btn-reg"])
+    ) {
+        $empresa = $_POST["empresa"];
+        $user = $_POST["user"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $rol = $_POST["rol"];
 
 
-    //      ---- INSERTAMOS LOS DATOS   ---
-    $inserta = "INSERT INTO usuarios (id_empresa, user, email, password, rol) VALUES ('$empresa', '$user','$email','$password', '$rol');";
-    echo $inserta;
-    $MyBBDD->consulta($inserta);
-   // $_COOKIE['inicio'] = 1; Esta cookie juraría que no hace nada, pero la dejo de momento porsiaca
+        //      ---- INSERTAMOS LOS DATOS   ---
+        $inserta = "INSERT INTO usuarios (id_empresa, user, email, password, rol) VALUES ('$empresa', '$user','$email','$password', '$rol');";
+        echo $inserta;
+        $MyBBDD->consulta($inserta);
+        // $_COOKIE['inicio'] = 1; Esta cookie juraría que no hace nada, pero la dejo de momento porsiaca
 
-     //      ---- SACAMOS LA ID DEL USUARIO   ---
-     // ------------ ESTO NOS SERVIRÁ PARA NAVEGAR POR LA PÁGINA REGISTRADOS
-     $consulta = "SELECT id_user FROM usuarios WHERE user='$user' AND password='$password';";
-     $MyBBDD->consulta($consulta);
-     $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-     $_SESSION['estado'] = $fila['id_user'];
-     $_SESSION['id'] = $fila['id_user'];
-     echo   '<br><h1>Registrados con id nº '.$_SESSION['estado'].'</h1><br>';
-}
+        //      ---- SACAMOS LA ID DEL USUARIO   ---
+        // ------------ ESTO NOS SERVIRÁ PARA NAVEGAR POR LA PÁGINA REGISTRADOS
+        $consulta = "SELECT id_user FROM usuarios WHERE user='$user' AND password='$password';";
+        $MyBBDD->consulta($consulta);
+        $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+        $_SESSION['estado'] = $fila['id_user'];
+        $_SESSION['id'] = $fila['id_user'];
+        echo   '<br><h1>Registrados con id nº ' . $_SESSION['estado'] . '</h1><br>';
+    }
 
 
 
