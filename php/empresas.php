@@ -87,7 +87,7 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
             $fila['estado_util'] . " - " .
             $fila['herramienta_vehiculo'] . 
             "<button id='btnLibre'>✔️</button>
-            <button id='btnOcupado'>❌</button>
+            <button id=' '>❌</button>
             <button id='btnReparar'>🛠️</button>".
             "</p>";
     }
