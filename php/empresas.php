@@ -79,20 +79,21 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
     ";
     $MyBBDD->consulta($sql);
 
-    echo "<div class='contenidoTabla'>";
+    echo "<table class='contenidoTabla'><tr>
+    <th>Marca</th><th>Modelo</th><th>Categoría</th><th>Herram</th>
+    <th>Libre</th><th>En uso</th><th>Defectuoso</th></tr><tr>";
+
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo "<p>" . $fila['marca_util'] . " - " .
-            $fila['modelo_util'] . " - " .
-            $fila['categoria_util'] . " - " .
-            $fila['estado_util'] . " - " .
-            $fila['herramienta_vehiculo'] . 
-            "<button id='btnLibre'>✔️</button>
-            <button id=' '>❌</button>
-            <button id='btnReparar'>🛠️</button>".
-            "</p>";
+        echo "<td>" . $fila['marca_util'] . "</td>" .
+            "<td>" . $fila['modelo_util'] . "</td>" .
+            "<td>" .   $fila['categoria_util'] . "</td>" .
+            // "<td>" .      $fila['estado_util'] . "</td>" .
+            "<td>" .    $fila['herramienta_vehiculo'] . "</td>".
+            "<td><button id='btnLibre'>✔️</button></td></tr>";
     }
-    echo "</div>";
+    echo "</table>";
     ?>
+
 
     <div class="contenedorFormularios">
         <form method="POST" class="formulario">

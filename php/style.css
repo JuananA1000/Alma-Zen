@@ -38,8 +38,9 @@ p{
     border: 1px solid black; 
     margin-bottom: 10px;   /* DUDA: Separamos un momento los formularios */
     padding: 10px;
-    
 }
+
+
 
 footer{ /*TUTORIAL footer siempre abajo: https://www.youtube.com/watch?v=PSD5pFi6bx4*/
     background-color: rgb(0, 183, 255);
