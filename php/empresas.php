@@ -89,7 +89,9 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
             "<td>" .   $fila['categoria_util'] . "</td>" .
             // "<td>" .      $fila['estado_util'] . "</td>" .
             "<td>" .    $fila['herramienta_vehiculo'] . "</td>".
-            "<td><button id='btnLibre'>✔️</button></td></tr>";
+            "<td><button class='btnLibre'>✔️</button></td>
+            <td><button class='btnOcupado'>🚫</button></td>
+            <td><button class='btnEstropeado'>🛠️</button></td></tr>";
     }
     echo "</table>";
     ?>
