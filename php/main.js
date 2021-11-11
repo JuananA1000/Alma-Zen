@@ -3,17 +3,15 @@ let btnOcupado = document.getElementsByClassName("btnOcupado");
 let btnEstropeado = document.getElementsByClassName("btnEstropeado");
 
 function estadoLibre() {
-    let attribute = this.getAttribute("class");
+    document.getElementsByClassName("btnLibre").style.backgroundColor = "lightblue";
     console.log("Estado Libre");
 }
 
-function estadoOcupado() {
-    let attribute = this.getAttribute("class");
+function estadoOcupado() {   
     console.log("Estado Ocupado");
 }
 
-function estadoEstropeado() {
-    let attribute = this.getAttribute("class");
+function estadoEstropeado() {  
     console.log("Estado estropeado");
 }
 

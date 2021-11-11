@@ -10,7 +10,7 @@
 
 <body>
 
-        <!-- RECOGEMOS LOS DATOS PARA INICIAR SESION  -->
+    <!-- RECOGEMOS LOS DATOS PARA INICIAR SESION  -->
 
     <form action="index.php" method="post">
         <input type="text" name="user" placeholder="Usuario">
@@ -28,6 +28,7 @@
     };
     ?>
 
+    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 
 
 

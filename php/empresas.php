@@ -79,16 +79,15 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
     ";
     $MyBBDD->consulta($sql);
 
-    echo "<table class='contenidoTabla'><tr>
+    echo "<table id='tablaHerramientas'><tr>
     <th>Marca</th><th>Modelo</th><th>Categoría</th><th>Herram</th>
-    <th>Libre</th><th>En uso</th><th>Defectuoso</th></tr><tr>";
+    <th>Libre</th><th>En uso</th><th>Defectuoso</th></tr>";
 
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo "<td>" . $fila['marca_util'] . "</td>" .
+        echo "<tr><td>" . $fila['marca_util'] . "</td>" .
             "<td>" . $fila['modelo_util'] . "</td>" .
             "<td>" .   $fila['categoria_util'] . "</td>" .
-            // "<td>" .      $fila['estado_util'] . "</td>" .
-            "<td>" .    $fila['herramienta_vehiculo'] . "</td>".
+            "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
             "<td><button class='btnLibre'>✔️</button></td>
             <td><button class='btnOcupado'>🚫</button></td>
             <td><button class='btnEstropeado'>🛠️</button></td></tr>";
@@ -97,8 +96,8 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
     ?>
 
 
-    <div class="contenedorFormularios">
-        <form method="POST" class="formulario">
+    <div class="contenidoFormulario">
+        <form method="POST">
             <fieldset>
                 <legend>Empleados</legend>
                 <p>Nombre: <input type="text" name="nombre_empleado"></p>
@@ -107,8 +106,10 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
 
             </fieldset>
         </form>
+    </div>
 
-        <form method="POST" class="formulario">
+    <div class="contenidoFormulario">
+        <form method="POST">
             <fieldset>
                 <legend>Herramientas</legend>
                 <p>Marca: <input type="text" name="marca_util"></p>
@@ -116,8 +117,8 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
                 <p>Categoría: <input type="text" name="categoria_util"></p>
                 <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
                 <p>Estado: <select name="estado_util">
-                        <option value="Ocupado">Ocupado</option>
                         <option value="Libre">Libre</option>
+                        <option value="Ocupado">Ocupado</option>
                         <option value="Estropeado">Estropeado</option>
                     </select>
                 </p>
@@ -126,8 +127,7 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
         </form>
     </div>
 
-    <hr>
-    <footer>Juan Antonio Amil y Antonio Marín</footer>
+    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 
     <script src="main.js"></script>
 </body>

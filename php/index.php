@@ -7,8 +7,6 @@ if (!isset($_SESSION['estado'])) { //creamos la variable sesion que usaremos par
 // estado = 1 O DISTINTO DE 0 ->  logeado
 
 include 'conect_class.php'; // MUY IMPORTANTE.
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +61,6 @@ include 'conect_class.php'; // MUY IMPORTANTE.
             //AÚN ESTÁ PENDIENTE DE PROBARLO. HAY QUE INSERTAR DATOS EN LA BBDD
 
             //TAMBIÉN FALTA HACER LA PARTE DEL REGISTRO. PERO ANTES HAY QUE TOCAR LA TABLA USUARIOS DE LA BBDD
-
         }
     }
 
@@ -120,7 +117,7 @@ include 'conect_class.php'; // MUY IMPORTANTE.
         </p>
     </form>
 
-    <footer>Juan Antonio Amil y Antonio Marín</footer>
+    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 
 
 </body>
