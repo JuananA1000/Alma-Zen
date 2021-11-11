@@ -52,7 +52,7 @@ echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
     echo "<div class='contenidoTabla'>";
     while ($fila = $MyBBDD->extraerRegistro()) {
         echo "<p>" . $fila['nombre_empleado'] . " " .
-            $fila['apellidos_empleado'] . "</p>";
+            $fila['apellidos_empleado'] ."<a>Ver Historial</a>". "</p>";
     }
     echo "</div>"
     ?>
