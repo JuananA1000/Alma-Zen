@@ -6,6 +6,7 @@ if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
 }
 
  //      --- SI PULSAMOS EL BOTON INICIAR SESION
+ 
  if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
 
     $user = $_POST["user"];
@@ -19,6 +20,8 @@ if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
     $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
 
     if ($fila == false) { //si el logeo falla
+        $_SESSION['estado'] = 0;
+       
         echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
     } else { // si el logeo es exitoso
         $_SESSION['estado'] = $fila['id_user'];
@@ -89,12 +92,25 @@ $MyBBDD->consulta($sql);
     <input type="submit" value="Iniciar Sesión" name="inicia-sesion">
 </form>
 
+<!-- Imprimimos el boton de cerrar sesión sesion -->
+<form method="post" action="login.php">
+    <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
+</form>
+
+
 <body>
     <h1>ALMA-ZEN</h1>
 
     <!-- <p>Inicio Sesión</p> -->
 
     <?php
+
+    // CIERRA LA SESION
+if (isset($_POST['cierra-sesion'])) {
+    $_SESSION['estado'] = 0;
+}
+
+
 $id_empresa = $_SESSION['estado'];
     if (isset($_POST['addEmple'])) {
         $nombre_empleado = $_POST['nombre_empleado'];
