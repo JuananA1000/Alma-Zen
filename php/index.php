@@ -15,28 +15,29 @@ if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
 
 
     //      --- COMPROBAMOS QUE EL USUARIO PERTENECE A LA BBDD
-    $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
-    $MyBBDD->consulta($consulta);
-    $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+    // $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
+    // $MyBBDD->consulta($consulta);
+    // $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
 
-    if ($fila == false) { //si el logeo falla
-        $_SESSION['estado'] = 0;
+    // if ($fila == false) { //si el logeo falla
+    //     $_SESSION['estado'] = 0;
+    //     echo ' action="index.php"';
        
-        echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-    } else { // si el logeo es exitoso
-        $_SESSION['estado'] = $fila['id_user'];
-        $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
+    //     echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+    // } else { // si el logeo es exitoso
+    //     $_SESSION['estado'] = $fila['id_user'];
+    //     $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
 
-        echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-        $_SESSION['user'] = $user;
-        $_SESSION['password'] = $password;
-        echo $_SESSION['user'];
+    //     echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+    //     $_SESSION['user'] = $user;
+    //     $_SESSION['password'] = $password;
+    //     echo $_SESSION['user'];
 
         //AÚN ESTÁ PENDIENTE DE PROBARLO. HAY QUE INSERTAR DATOS EN LA BBDD
 
         //TAMBIÉN FALTA HACER LA PARTE DEL REGISTRO. PERO ANTES HAY QUE TOCAR LA TABLA USUARIOS DE LA BBDD
-    }
-}
+    // }
+ }
 
 //  RECIBIMOS LOS DATOS -- DE REGISTRO -- Y LOS METEMOS EN LA BBDD
 if (
@@ -53,7 +54,6 @@ if (
     $inserta = "INSERT INTO usuarios (id_empresa, user, email, password, rol) VALUES ('$empresa', '$user','$email','$password', '$rol');";
     echo $inserta;
     $MyBBDD->consulta($inserta);
-    // $_COOKIE['inicio'] = 1; Esta cookie juraría que no hace nada, pero la dejo de momento porsiaca
 
     //      ---- SACAMOS LA ID DEL USUARIO   ---
     // ------------ ESTO NOS SERVIRÁ PARA NAVEGAR POR LA PÁGINA REGISTRADOS
