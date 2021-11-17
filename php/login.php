@@ -1,5 +1,7 @@
 <?php
 include 'conect_class.php'; // MUY IMPORTANTE.
+// session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +17,7 @@ include 'conect_class.php'; // MUY IMPORTANTE.
 
     <!-- RECOGEMOS LOS DATOS PARA INICIAR SESION  -->
 
-    <form  method="post">
+    <form method="post">
         <input type="text" name="user" placeholder="Usuario">
         <br>
         <input type="password" name="password" placeholder="Contraseña">
@@ -33,30 +35,70 @@ include 'conect_class.php'; // MUY IMPORTANTE.
 
 
     if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
-
         $user = $_POST["user"];
         $password = $_POST["password"];
-
- $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
-    $MyBBDD->consulta($consulta);
-    $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-
-    if ($fila == false) { //si el logeo falla
-        $_SESSION['estado'] = 0;
-        echo ' action="index.php"';
+        echo $user.'<br>';
+        echo $password.'<br>';
        
-        echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-    } else { // si el logeo es exitoso
-        $_SESSION['estado'] = $fila['id_user'];
-        $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
 
-        echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-        $_SESSION['user'] = $user;
-        $_SESSION['password'] = $password;
-        echo $_SESSION['user'];
-        header ('Location: http://localhost/curso/Alma-Zen/php/index.php');
+
+        $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
+        $MyBBDD->consulta($consulta);
+        $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+echo $consulta;
+        if ($fila == false) { //si el logeo falla
+            // echo 'MAAAAAAAL '. $user;
+            $_SESSION['estado'] = 0;
+            echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+        } else { // si el logeo es exitoso
+            echo 'segundaa '. $user;
+            $_SESSION['estado'] = $fila['id_user'];
+           
+            echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+            // $_SESSION['user'] = $user;
+            // $_SESSION['password'] = $password;
+            // echo $_SESSION['user'];
+            if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
+                $_SESSION['estado'] = $fila['id_user'];
+            }
+            header('Location: http://localhost/curso/Alma-Zen/php/index.php');
+            echo 'PRIMERAA '. $fila['id_user'];
+        }
+       
+       
+       
+       
     }
-}
+
+    function iniciarSesion($user, $password)
+    {
+        echo 'segundaa '. $user;
+        include 'conect_class.php'; // MUY IMPORTANTE.
+
+        // $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
+        // $MyBBDD->consulta($consulta);
+        // $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+
+        // if ($fila == false) { //si el logeo falla
+
+        //     $_SESSION['estado'] = 0;
+        //     echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+        // } else { // si el logeo es exitoso
+
+        //     $_SESSION['estado'] = $fila['id_user'];
+        //     $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
+
+        //     echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+        //     $_SESSION['user'] = $user;
+        //     $_SESSION['password'] = $password;
+        //     echo $_SESSION['user'];
+        //     if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
+        //         $_SESSION['estado'] = 0;
+        //     }
+        //     header('Location: http://localhost/curso/Alma-Zen/php/index.php');
+        // }
+    }
+
     ?>
 
     <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
