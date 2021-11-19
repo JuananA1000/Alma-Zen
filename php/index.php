@@ -1,13 +1,14 @@
 <?php
 include 'conect_class.php'; // MUY IMPORTANTE.
 session_start();
+
 if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
     $_SESSION['estado'] = 0;
-}else{
-    $_SESSION['estado'] =  $_SESSION['id'];
 }
-echo  $_SESSION['estado'];
-echo  $_SESSION['id'];
+// else{
+//     $_SESSION['estado'] =  $_SESSION['id'];
+// }
+echo ' ESTADO: '. $_SESSION['estado'];
 
  //      --- SI PULSAMOS EL BOTON INICIAR SESION
  

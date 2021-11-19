@@ -1,7 +1,7 @@
 <?php
 include 'conect_class.php'; // MUY IMPORTANTE.
 // session_start();
-
+// echo ' ESTADO: '. $_SESSION['estado'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,10 +37,10 @@ include 'conect_class.php'; // MUY IMPORTANTE.
     if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
         $user = $_POST["user"];
         $password = $_POST["password"];
-        echo $user.'<br>';
-        echo $password.'<br>';
-       
-
+        echo $user.' LINEA 40<br>';
+        echo $password.' LINEA 41<br>';
+        //iniciarSesion($user, $password);
+    //} //COMENTAR ESTA LLAVE SI DESCOMENTAMOS LO DE ABAJO
 
         $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
         $MyBBDD->consulta($consulta);
@@ -61,43 +61,40 @@ echo $consulta;
             if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
                 $_SESSION['estado'] = $fila['id_user'];
             }
-            header('Location: http://localhost/curso/Alma-Zen/php/index.php');
+            header('Location: http://localhost/curso/Alma-Zen/php/index.php?estado='.$fila['id_user']);
             echo 'PRIMERAA '. $fila['id_user'];
-        }
-       
-       
-       
-       
+        }    
     }
 
-    function iniciarSesion($user, $password)
-    {
-        echo 'segundaa '. $user;
-        include 'conect_class.php'; // MUY IMPORTANTE.
+    // function iniciarSesion($user, $password)
+    // {
+    //     echo $user.' LINEA 70<br>';
+    //     echo $password.' LINEA 71<br>';
+    //     include 'conect_class.php'; // MUY IMPORTANTE.
 
-        // $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
-        // $MyBBDD->consulta($consulta);
-        // $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+    //     $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
+    //     $MyBBDD->consulta($consulta);
+    //     $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
 
-        // if ($fila == false) { //si el logeo falla
+    //     if ($fila == false) { //si el logeo falla
 
-        //     $_SESSION['estado'] = 0;
-        //     echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-        // } else { // si el logeo es exitoso
+    //         $_SESSION['estado'] = 0;
+    //         echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+    //     } else { // si el logeo es exitoso
 
-        //     $_SESSION['estado'] = $fila['id_user'];
-        //     $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
+    //         $_SESSION['estado'] = $fila['id_user'];
+    //         $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
 
-        //     echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-        //     $_SESSION['user'] = $user;
-        //     $_SESSION['password'] = $password;
-        //     echo $_SESSION['user'];
-        //     if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
-        //         $_SESSION['estado'] = 0;
-        //     }
-        //     header('Location: http://localhost/curso/Alma-Zen/php/index.php');
-        // }
-    }
+    //         echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
+    //         // $_SESSION['user'] = $user;
+    //         // $_SESSION['password'] = $password;
+    //         // echo $_SESSION['user'];
+    //         // if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
+    //         //     $_SESSION['estado'] = 0;
+    //         // }
+    //         header('Location: http://localhost/curso/Alma-Zen/php/index.php');
+    //     }
+    // }
 
     ?>
 
