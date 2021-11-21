@@ -1,29 +1,29 @@
 -- Creamos la base de datos
-CREATE SCHEMA `almazen` ;
+CREATE SCHEMA `almazen`;
 
 -- Creamos las tablas:
--- En primer lugar, de usuarios:
-CREATE TABLE `almazen`.`usuarios` (
-  `id_user` INT NOT NULL AUTO_INCREMENT,
-  `id_empresa` INT NOT NULL,
-  `user` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(90) NOT NULL,
-  `password` VARCHAR(45) NULL,
-  `rol` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_user`),
-  KEY `fk_usuarios_empresas_id_empresa` (`id_empresa`),
-  CONSTRAINT `fk_empleados_empresas_id_empresa` FOREIGN KEY (`id_empresa`)
-  REFERENCES `empresas` (`id_empresa`)
-  ON DELETE NO ACTION ON UPDATE NO ACTION);
-
--- Empresas:
+-- En primer lugar, de empresas:
 CREATE TABLE `almazen`.`empresas` (
   `id_empresa` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_empresa` varchar(45) NOT NULL,
   PRIMARY KEY (`id_empresa`)
 );
 
--- Empleados:
+-- De usuarios:
+CREATE TABLE `almazen`.`usuarios` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `id_empresa` int(11) NOT NULL,
+  `user` varchar(45) NOT NULL,
+  `email` varchar(90) NOT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `rol` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_user`),
+  KEY `fk_usuarios_empresas_id_empresa` (`id_empresa`),
+  CONSTRAINT `fk_empleados_empresas_id_empresa` FOREIGN KEY (`id_empresa`)
+  REFERENCES `empresas` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+-- De empleados:
 CREATE TABLE `almazen`.`empleados` (
   `id_empleado` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_empleado` varchar(45) NOT NULL,
@@ -32,25 +32,22 @@ CREATE TABLE `almazen`.`empleados` (
   PRIMARY KEY (`id_empleado`),
   KEY `fk_empleados_empresas_idempresa` (`id_empresa`),
   CONSTRAINT `fk_empleados_empresas_idempresa` FOREIGN KEY (`id_empresa`)
-  REFERENCES `empresas` (`id_empresa`)
-  ON DELETE NO ACTION ON UPDATE NO ACTION
+  REFERENCES `empresas` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- Útiles de la empresa:
 CREATE TABLE `almazen`.`utiles` (
   `id_util` int(11) NOT NULL AUTO_INCREMENT,
-  `id_empresa` int(11) NOT NULL,
+  `herramienta_vehiculo` varchar(45) NOT NULL,
   `marca_util` varchar(45) NOT NULL,
   `modelo_util` varchar(45) NOT NULL,
   `categoria_util` varchar(45) NOT NULL,
-  `estado_util` varchar(100) DEFAULT NULL,
-  `herramienta_vehiculo` varchar(45) NOT NULL,
+  `estado_util` varchar(100) DEFAULT 'libre',
+  `id_empresa` int(11) NOT NULL,
   PRIMARY KEY (`id_util`),
   KEY `fk_utiles_empresas_idempresa` (`id_empresa`),
-  CONSTRAINT `fk_utiles_empresa`
-  FOREIGN KEY (`id_empresa`)
-  REFERENCES `empresas` (`id_empresa`)
-  ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_utiles_empresa` FOREIGN KEY (`id_empresa`)
+  REFERENCES `empresas` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- Y por último, la relación que recogerá el historial de las herramientas
@@ -65,35 +62,64 @@ CREATE TABLE `almazen`.`emple_util` (
   PRIMARY KEY (`id_emple_util`),
   KEY `fk_empleherra_empleados_id` (`id_empleado`),
   KEY `fk_empleherra_utiles_id` (`id_util`),
-  CONSTRAINT `fk_empleherra_empleados`
-  FOREIGN KEY (`id_empleado`)
-  REFERENCES `empleados` (`id_empleado`)
-  ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_empleherra_utiles`
-  FOREIGN KEY (`id_util`)
-  REFERENCES `utiles` (`id_util`)
-  ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_empleherra_empleados` FOREIGN KEY (`id_empleado`)
+  REFERENCES `empleados` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_empleherra_utiles` FOREIGN KEY (`id_util`)
+  REFERENCES `utiles` (`id_util`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- A continuación, insertamos  datos a cada una de las tablas:
-INSERT INTO almazen.usuarios (id_empresa, user, email, password, rol)
-VALUES
-    ('1', 'admin', 'admin@admin.com', 'admin', 'admin'),
-    ('1', 'empleado', 'emple@emple.com', 'empleado', 'empleado');
-
-     
-
 INSERT INTO almazen.empresas (nombre_empresa)
 VALUES
-    ('Empresa A'),
-	  ('Empresa B'),
-    ('Empresa c');
-
-INSERT INTO almazen.empleados (nombre_empleado, apellidos_empleado, id_empresa) VALUES ('Carlos','Castro', '1');
-
-INSERT INTO almazen.utiles (id_empresa, marca_util, modelo_util, categoria_util, estado_util, herramienta_vehiculo)
+  ('Compimsa'),
+	('Gestenfeiser');
+    
+INSERT INTO almazen.empleados
+	(nombre_empleado, apellidos_empleado, id_empresa)
 VALUES
-    ('3', 'Hilti','TE-60','Pistolete','','Herramienta'),
-	('3', 'Hilti','TE-100','Rompedor','','Herramienta'),
-    ('2', 'Caterpillar','Retro-MAX','Retroexcavadora','','Vehiculo'),
-    ('1', 'Bosch','GWS 20-230','Radial','','Herramienta');
+	('Juan','Cuesta', '1'),
+	('Paloma','Hurtado', '1'),
+	('Mauricio','Hidalgo', '1'),
+	('Fernando','Navarro', '1'),
+	('Marisa','Benito', '1'),
+	('Vicenta','Benito', '1'),
+	('Andrés','Guerra', '1'),
+	('Isabel','Ruiz', '1'),
+	('Belén','López', '1'),
+	('Alicia','Sanz', '1'),
+	('Lucía','Álvarez', '1'),
+  ('Roberto','Alonso', '1'),
+
+  ('Gregorio','Antúnez', '2'),
+  ('Bernardo','Marín', '2'),
+  ('Jesús','Quesada', '2'),
+  ('Julián','Palacios', '2'),
+  ('Mónica','Salazar', '2'),
+  ('Arturo','Cañas', '2'),
+  ('Victoria','de la Vega', '2'),
+  ('Maricarmen','Cañizares', '2'),
+  ('Ricardo','Mesa', '2'),
+  ('Sofía','Guillén', '2'),
+  ('Benito','Avendaño', '2'),
+  ('Nacha','Ruiz', '2'),
+  ('Marimar','Montes', '2');
+    
+INSERT INTO almazen.utiles
+	(herramienta_vehiculo, categoria_util, marca_util, modelo_util, id_empresa)
+VALUES
+	('herramienta', 'Taladro percutor', 'Bosch', 'EasyImpact 550', '1'),
+	('herramienta', 'Amoladora angular', 'Bosch', 'GWS 7-125', '1'),
+	('herramienta', 'Martillo perforador', 'WORX', 'sds plus', '1'),
+	('herramienta', 'Nivel láser', 'STANLEY', 'desconocido', '1'),	
+	('vehículo', 'Dumper', 'AUSA', 'D201 RHS', '1'),
+	('vehículo', 'Dumper', 'AUSA', 'D250 RHGS', '1'),
+	('vehículo', 'Miniexcavadora', 'Kubota', 'KX 71-3', '1'),
+	
+	('herramienta', 'Cono de Abrams', 'Novatest', 'AC-01', '2'),
+	('herramienta', 'Puntal', 'ALTRAD', 'EasyImpact 550', '2'),
+	('herramienta', 'Hormigonera eléctrica', 'Hormix', 'desconocido', '2'),
+	('herramienta', 'Carretilla de obra', 'desconocido', 'desconocido', '2'),
+	('vehículo', 'Dumper', 'AUSA', 'D201 RHS', '2'),
+	('vehículo', 'Dumper', 'AUSA', 'D250 RHGS', '2'),
+	('vehículo', 'Miniexcavadora', 'Kubota', 'KX 71-3', '2');
+
