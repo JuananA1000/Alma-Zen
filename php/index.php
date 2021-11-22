@@ -153,6 +153,28 @@ $id_empresa = $_SESSION['estado'];
     echo "</table>";
     ?>
 
+    <!-- 
+        PENDIENTE: Añadir funcionalidad de BBDD a botones:
+        
+        * btnLibre:
+            UPDATE utiles 
+            SET estado_util = 'libre' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+        
+        * btnOcupado:
+            UPDATE utiles 
+            SET estado_util = 'ocupado' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+        
+        * btnLibre:
+            UPDATE utiles 
+            SET estado_util = 'estropeado' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+     -->
+
 
     <div class="contenidoFormulario">
         <form method="POST">
