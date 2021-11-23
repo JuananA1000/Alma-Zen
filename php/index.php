@@ -1,60 +1,50 @@
 <?php
-include 'conect_class.php'; // MUY IMPORTANTE.
 session_start();
 
-if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
-    $_SESSION['estado'] = 0;
+//  CREAMOS LA COOKIE 'Estado' CON EL ID DE LA EMPRESA
+include 'conect_class.php'; // MUY IMPORTANTE.
+if (!isset($_COOKIE['Estado'])) {
+    // echo '<form method="GET" action ="loginPrueba.php">';
+    // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
+    // echo '</form>';
+    setcookie("Estado", 0, time() + 86400, "/");
+}else{
+
 }
-// else{
-//     $_SESSION['estado'] =  $_SESSION['id'];
-// }
-echo ' ESTADO: '. $_SESSION['estado'];
 
- //      --- SI PULSAMOS EL BOTON INICIAR SESION
- 
- if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
+//  CREAMOS LA COOKIE 'UserId' CON EL ID DE LA EMPRESA
+if (!isset($_COOKIE['UserId'])) {
+    // echo '<form method="GET" action ="loginPrueba.php">';
+    // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
+    // echo '</form>';
+    setcookie("UserId", 0, time() + 86400, "/");
+}else{
+
+}
+
+if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
 
     $user = $_POST["user"];
-    $password = $_POST["password"];
-
- }
-
-//  RECIBIMOS LOS DATOS -- DE REGISTRO -- Y LOS METEMOS EN LA BBDD
-if (
-    isset($_POST["btn-reg"])
-) {
-    $empresa = $_POST["empresa"];
-    $user = $_POST["user"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $rol = $_POST["rol"];
+    $pass = $_POST["password"];
 
 
-    //      ---- INSERTAMOS LOS DATOS   ---
-    $inserta = "INSERT INTO usuarios (id_empresa, user, email, password, rol) VALUES ('$empresa', '$user','$email','$password', '$rol');";
-    echo $inserta;
-    $MyBBDD->consulta($inserta);
 
-    //      ---- SACAMOS LA ID DEL USUARIO   ---
-    // ------------ ESTO NOS SERVIRÁ PARA NAVEGAR POR LA PÁGINA REGISTRADOS
-    $consulta = "SELECT id_user FROM usuarios WHERE user='$user' AND password='$password';";
+    //      --- COMPROBAMOS QUE EL USUARIO PERTENECE A LA BBDD
+    $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$pass';";
+    echo $consulta;
     $MyBBDD->consulta($consulta);
     $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-    $_SESSION['estado'] = $fila['id_user'];
-    $_SESSION['id'] = $fila['id_user'];
-    echo   '<br><h1>Registrados con id nº ' . $_SESSION['estado'] . '</h1><br>';
+
+    if ($fila == false) { //si el logeo falla
+        echo "Datos incorrectos";
+    } else { // si el logeo es exitoso
+        $_COOKIE['Estado'] = $fila['id_empresa'];
+        $_COOKIE['UserId'] = $fila['id_user'];
+
+        echo '<h1>Cookie estado (idempresa): ' . $_COOKIE['Estado'] . '</h1><br>';
+        echo 'Sesión iniciada con éxito. Usuario: ' .  $fila['user']. ' Id del usuario: '.  $_COOKIE['UserId'];
+    }
 }
-
-// estado = 0 -> sin logear
-// estado = 1 O DISTINTO DE 0 ->  logeado
-
-
-//      ---- SACAMOS LA ID DE la empresa   ---
-$id_usuario = $_SESSION['estado'];
-$sql = "SELECT id_empresa FROM usuarios
-    WHERE id_user = $id_usuario;
-";
-$MyBBDD->consulta($sql);
 
 ?>
 <!DOCTYPE html>
@@ -80,18 +70,18 @@ $MyBBDD->consulta($sql);
 
 <body>
     <h1>ALMA-ZEN</h1>
-    
+
     <!-- <p>Inicio Sesión</p> -->
 
     <?php
 
     // CIERRA LA SESION
-if (isset($_POST['cierra-sesion'])) {
-    $_SESSION['estado'] = 0;
-}
+    if (isset($_POST['cierra-sesion'])) {
+        $_COOKIE['Estado'] = 0;
+    }
 
 
-$id_empresa = $_SESSION['estado'];
+    $id_empresa = $_COOKIE['Estado'];
     if (isset($_POST['addEmple'])) {
         $nombre_empleado = $_POST['nombre_empleado'];
         $apellidos_empleado = $_POST['apellidos_empleado'];
@@ -101,7 +91,7 @@ $id_empresa = $_SESSION['estado'];
         ";
         $MyBBDD->consulta($sql);
     }
-    
+
     $sql = "SELECT * FROM empleados
         WHERE id_empresa = $id_empresa;
     ";
@@ -110,7 +100,7 @@ $id_empresa = $_SESSION['estado'];
     echo "<div class='contenidoTabla'>";
     while ($fila = $MyBBDD->extraerRegistro()) {
         echo "<p>" . $fila['nombre_empleado'] . " " .
-            $fila['apellidos_empleado'] ."<a>Ver Historial</a>". "</pr>";
+            $fila['apellidos_empleado'] . "<a>Ver Historial</a>" . "</pr>";
     }
     echo "</div>"
     ?>
@@ -131,7 +121,7 @@ $id_empresa = $_SESSION['estado'];
         ";
         $MyBBDD->consulta($sql);
     }
-    // $id_empresa = $_SESSION['estado'];
+   
     $sql = "SELECT * FROM utiles
         WHERE id_empresa = $id_empresa;
     ";
@@ -210,7 +200,7 @@ $id_empresa = $_SESSION['estado'];
     <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 
     <script src="main.js"></script>
-   
+
 
     <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 

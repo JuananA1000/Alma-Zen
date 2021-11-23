@@ -1,6 +1,13 @@
 <?php
 session_start();
 include 'conect_class.php'; // MUY IMPORTANTE.
+if (!isset($_COOKIE['inicio'])) {
+    // echo '<form method="GET" action ="loginPrueba.php">';
+    // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
+    // echo '</form>';
+    setcookie("inicio", 0, time() + 6000, "/");
+
+ }
 ?>
 
 

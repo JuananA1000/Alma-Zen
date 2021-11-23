@@ -61,37 +61,3 @@ if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
 
 
 
-
-//  RECIBIMOS LOS DATOS -- DE REGISTRO -- Y LOS METEMOS EN LA BBDD
-
-// if (
-//     isset($_POST["btn-reg"])
-//     /*&& isset($_POST["password"])
-//     && isset($_POST["bio"])
-//     && isset($_POST["fech"])
-//     && isset($_POST["nacion"])
-//     && isset($_POST["term"])
-//     NO ES NECESARIO PONER ESTOS ISSET PORQUE AL ESTAR LOS DATOS EN REQUIRED, AL PULSAR EL BOTON YA TIENE LOS DATOS
-//     */
-// ) {
-//     $user = $_POST["user"];
-//     $password = $_POST["password"];
-//     $bio = $_POST["bio"];
-//     $fecha = $_POST["fech"];
-//     $nacion = $_POST["nacion"];
-//     $sex = $_POST["sex"];
-
-//     //      ---- INSERTAMOS LOS DATOS   ---
-//     $inserta = "INSERT INTO entregable4.usuario (nombreUsuario, contrasenna, bio, fechaNacimiento, nacionalidad, sexo) VALUES ('$user','$password','$bio','$fecha','$nacion', '$sex');";
-//     echo $inserta;
-//     $MyBBDD->consulta($inserta);
-//     $_COOKIE['inicio'] = 1;
-
-//      //      ---- SACAMOS LA ID DEL USUARIO   ---
-//      $consulta = "SELECT idUSUARIO FROM usuario WHERE nombreUsuario='$user' AND contrasenna='$password';";
-//      $MyBBDD->consulta($consulta);
-//      $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-//      $_SESSION['estado'] = $fila['idUSUARIO'];
-//      $_SESSION['id'] = $fila['idUSUARIO'];
-//      echo  $_SESSION['estado'];
-// }

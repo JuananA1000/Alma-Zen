@@ -1,8 +1,14 @@
 <?php
+session_start();
 include 'conect_class.php'; // MUY IMPORTANTE.
-// session_start();
-// echo ' ESTADO: '. $_SESSION['estado'];
+if (!isset($_COOKIE['inicio'])) {
+    // echo '<form method="GET" action ="loginPrueba.php">';
+    // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
+    // echo '</form>';
+    setcookie("inicio", 0, time() + 6000, "/");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,88 +23,18 @@ include 'conect_class.php'; // MUY IMPORTANTE.
 
     <!-- RECOGEMOS LOS DATOS PARA INICIAR SESION  -->
 
-    <form method="post">
+    <form action="index.php" method="post">
         <input type="text" name="user" placeholder="Usuario">
         <br>
         <input type="password" name="password" placeholder="Contraseña">
         <br><br>
         <input type="submit" value="Iniciar sesión" name="btn-ini">
     </form>
-    <form action="register.php" method="post">
+    <form action="registro.php" method="post">
         <input type="submit" value="Registrarse" name="btn-gotoreg">
     </form>
-    <?php
-    if (isset($error)) {
-        echo '<br>' . $error;
-    }
 
 
-
-    if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
-        $user = $_POST["user"];
-        $password = $_POST["password"];
-        echo $user.' LINEA 40<br>';
-        echo $password.' LINEA 41<br>';
-        //iniciarSesion($user, $password);
-    //} //COMENTAR ESTA LLAVE SI DESCOMENTAMOS LO DE ABAJO
-
-        $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
-        $MyBBDD->consulta($consulta);
-        $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-echo $consulta;
-        if ($fila == false) { //si el logeo falla
-            // echo 'MAAAAAAAL '. $user;
-            $_SESSION['estado'] = 0;
-            echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-        } else { // si el logeo es exitoso
-            echo 'segundaa '. $user;
-            $_SESSION['estado'] = $fila['id_user'];
-           
-            echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-            // $_SESSION['user'] = $user;
-            // $_SESSION['password'] = $password;
-            // echo $_SESSION['user'];
-            if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
-                $_SESSION['estado'] = $fila['id_user'];
-            }
-            header('Location: http://localhost/curso/Alma-Zen/php/index.php?estado='.$fila['id_user']);
-            echo 'PRIMERAA '. $fila['id_user'];
-        }    
-    }
-
-    // function iniciarSesion($user, $password)
-    // {
-    //     echo $user.' LINEA 70<br>';
-    //     echo $password.' LINEA 71<br>';
-    //     include 'conect_class.php'; // MUY IMPORTANTE.
-
-    //     $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$password';";
-    //     $MyBBDD->consulta($consulta);
-    //     $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-
-    //     if ($fila == false) { //si el logeo falla
-
-    //         $_SESSION['estado'] = 0;
-    //         echo '<h1>ERROR al iniciar sesión. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-    //     } else { // si el logeo es exitoso
-
-    //         $_SESSION['estado'] = $fila['id_user'];
-    //         $_SESSION['id'] = $fila['id_user']; // la usaremos más tarde (index.php ejercicio 4 de pablo)
-
-    //         echo '<h1>Sesión iniciada con éxito. Estado:' .  $_SESSION['estado'] . ' </h1><br>';
-    //         // $_SESSION['user'] = $user;
-    //         // $_SESSION['password'] = $password;
-    //         // echo $_SESSION['user'];
-    //         // if (!isset($_SESSION['estado'])) { //a estado le asignamos la id del usuario
-    //         //     $_SESSION['estado'] = 0;
-    //         // }
-    //         header('Location: http://localhost/curso/Alma-Zen/php/index.php');
-    //     }
-    // }
-
-    ?>
-
-    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 
 
 
