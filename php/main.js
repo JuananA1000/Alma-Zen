@@ -3,15 +3,17 @@ let btnOcupado = document.getElementsByClassName("btnOcupado");
 let btnEstropeado = document.getElementsByClassName("btnEstropeado");
 
 function estadoLibre() {
-    document.getElementsByClassName("btnLibre").style.backgroundColor = "lightblue";
+    alert('Herramienta desocupada.')
     console.log("Estado Libre");
 }
 
-function estadoOcupado() {   
+function estadoOcupado() {
+    alert('Herramienta en uso. Escoja otra')
     console.log("Estado Ocupado");
 }
 
 function estadoEstropeado() {  
+    alert('Herramienta fuera de servicio o en reparación. Escoja otra')
     console.log("Estado estropeado");
 }
 
