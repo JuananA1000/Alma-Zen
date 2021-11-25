@@ -148,34 +148,44 @@ if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
             "<td>" . $fila['modelo_util'] . "</td>" .
             "<td>" .   $fila['categoria_util'] . "</td>" .
             "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
-            "<td><button class='btnLibre'>✔️</button></td>
-            <td><button class='btnOcupado'>🚫</button></td>
-            <td><button class='btnEstropeado'>🛠️</button></td></tr>";
+            "<td><button name='statusLibre' class='btnLibre'>✔️</button></td>
+            <td><button name='statusOcup' class='btnOcupado'>🚫</button></td>
+            <td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
     }
     echo "</table>";
-    ?>
 
-    <!-- 
-        PENDIENTE: Añadir funcionalidad de BBDD a botones:
+    /*
+    if (isset($_POST['statusLibre'])) {
         
-        * btnLibre:
-            UPDATE utiles 
+        $sql = "UPDATE utiles 
             SET estado_util = 'libre' 
             WHERE id_util = $id_util
             AND id_empresa = $id_empresa;
+        "
+        $MyBBDD->consulta($sql);
+    }
+    
+    if (isset($_POST['statusOcup'])) {
         
-        * btnOcupado:
-            UPDATE utiles 
+        $sql = "UPDATE utiles 
             SET estado_util = 'ocupado' 
             WHERE id_util = $id_util
             AND id_empresa = $id_empresa;
+        "
+        $MyBBDD->consulta($sql);
+    }
+    if (isset($_POST['statusEstro'])) {
         
-        * btnLibre:
-            UPDATE utiles 
-            SET estado_util = 'estropeado' 
+        $sql = "UPDATE utiles 
+            SET estado_util = 'ocupado' 
             WHERE id_util = $id_util
             AND id_empresa = $id_empresa;
-     -->
+        "
+        $MyBBDD->consulta($sql);
+    }
+    
+    */
+    ?>
 
 
     <div class="contenidoFormulario">
