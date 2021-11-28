@@ -29,6 +29,3 @@ include '../conect_class.php'; // MUY IMPORTANTE.
 </body>
 
 </html>
-<?php
-
-    ?>
