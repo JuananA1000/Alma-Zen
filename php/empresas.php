@@ -1,98 +1,122 @@
 <?php
-// include("conect_class.php");
+include ('conect_class.php'); // MUY IMPORTANTE.
+$_GET['id_empresa'];
 
-// $id_empresa = $_GET['id_empresa']; // el id_empresa de la empresa
+$sql = "SELECT * FROM empresas
+    WHERE id_empresa = $id_empresa;
+";
+$MyBBDD->consulta($sql);
 
-// // 4. Y los mostramos tambien en el DOM
 
-// $sql = "SELECT * FROM empresas
-//     WHERE id_empresa = $id_empresa;
-// ";
-// $MyBBDD->consulta($sql);
-
-// $fila = $MyBBDD->extraerRegistro();
-// echo "<h1>AlmaZen | " . $fila['nombre_empresa'] . "</h1>";
 ?>
-<!-- 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>
-        <?php
-        // echo $fila['nombre_empresa']; // El nombre de cada empresa aparecerá en la pestaña del navegador
-        ?>
-    </title>
+    <title>Empresas</title>
 </head>
 
+
 <body>
-    <h3 class="cabecera"> Empleados</h3>
+    <h1>ALMA-ZEN</h1>
 
     <?php
 
-    // if (isset($_POST['addEmple'])) {
-    //     $nombre_empleado = $_POST['nombre_empleado'];
-    //     $apellidos_empleado = $_POST['apellidos_empleado'];
 
-    //     $sql = "INSERT INTO empleados (nombre_empleado, apellidos_empleado, id_empresa) 
-    //         VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
-    //     ";
-    //     $MyBBDD->consulta($sql);
-    // }
+    if (isset($_POST['addEmple'])) {
+        $nombre_empleado = $_POST['nombre_empleado'];
+        $apellidos_empleado = $_POST['apellidos_empleado'];
 
-    // $sql = "SELECT * FROM empleados
-    //     WHERE id_empresa = $id_empresa;
-    // ";
-    // $MyBBDD->consulta($sql);
+        $sql = "INSERT INTO empleados (nombre_empleado, apellidos_empleado, id_empresa) 
+            VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
+        ";
+        $MyBBDD->consulta($sql);
+    }
 
-    // echo "<div class='contenidoTabla'>";
-    // while ($fila = $MyBBDD->extraerRegistro()) {
-    //     echo "<p>" . $fila['nombre_empleado'] . " " .
-    //         $fila['apellidos_empleado'] ."<a>Ver Historial</a>". "</p>";
-    // }
-    // echo "</div>"
-    // ?>
+    $sql = "SELECT * FROM empleados
+        WHERE id_empresa = $id_empresa;
+    ";
+    $MyBBDD->consulta($sql);
+
+    echo "<div class='contenidoTabla'>";
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        echo "<p>" . $fila['nombre_empleado'] . " " .
+            $fila['apellidos_empleado'] . "<a>Ver Historial</a>" . "</pr>";
+    }
+    echo "</div>"
+    ?>
 
     <h3 class="cabecera"> Herramientas</h3>
 
     <?php
+    if (isset($_POST['addHerr'])) {
+        $marca_util = $_POST['marca_util'];
+        $modelo_util = $_POST['modelo_util'];
+        $categoria_util = $_POST['categoria_util'];
+        $herramienta_vehiculo = $_POST['herramienta_vehiculo'];
+        $estado_util = $_POST['estado_util'];
 
-    // if (isset($_POST['addHerr'])) {
-    //     $marca_util = $_POST['marca_util'];
-    //     $modelo_util = $_POST['modelo_util'];
-    //     $categoria_util = $_POST['categoria_util'];
-    //     $herramienta_vehiculo = $_POST['herramienta_vehiculo'];
-    //     $estado_util = $_POST['estado_util'];
+        $sql = "INSERT INTO utiles (marca_util, modelo_util, categoria_util, estado_util, herramienta_vehiculo, id_empresa) 
+            VALUES ('$marca_util','$modelo_util','$categoria_util','$estado_util','$herramienta_vehiculo', '$id_empresa');
+        ";
+        $MyBBDD->consulta($sql);
+    }
 
-    //     $sql = "INSERT INTO utiles (marca_util, modelo_util, categoria_util, estado_util, herramienta_vehiculo, id_empresa) 
-    //         VALUES ('$marca_util','$modelo_util','$categoria_util','$estado_util','$herramienta_vehiculo', '$id_empresa');
-    //     ";
-    //     $MyBBDD->consulta($sql);
-    // }
+    $sql = "SELECT * FROM utiles
+        WHERE id_empresa = $id_empresa;
+    ";
+    $MyBBDD->consulta($sql);
 
-    // $sql = "SELECT * FROM utiles
-    //     WHERE id_empresa = $id_empresa;
-    // ";
-    // $MyBBDD->consulta($sql);
+    echo "<table id='tablaHerramientas'><tr>
+    <th>Marca</th><th>Modelo</th><th>Categoría</th><th>Herram</th>
+    <th>Libre</th><th>En uso</th><th>Defectuoso</th></tr>";
 
-    // echo "<table id='tablaHerramientas'><tr>
-    // <th>Marca</th><th>Modelo</th><th>Categoría</th><th>Herram</th>
-    // <th>Libre</th><th>En uso</th><th>Defectuoso</th></tr>";
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        echo "<tr><td>" . $fila['marca_util'] . "</td>" .
+            "<td>" . $fila['modelo_util'] . "</td>" .
+            "<td>" .   $fila['categoria_util'] . "</td>" .
+            "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
+            "<td><button name='statusLibre' class='btnLibre'>✔️</button></td>
+            <td><button name='statusOcup' class='btnOcupado'>🚫</button></td>
+            <td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
+    }
+    echo "</table>";
 
-    // while ($fila = $MyBBDD->extraerRegistro()) {
-    //     echo "<tr><td>" . $fila['marca_util'] . "</td>" .
-    //         "<td>" . $fila['modelo_util'] . "</td>" .
-    //         "<td>" .   $fila['categoria_util'] . "</td>" .
-    //         "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
-    //         "<td><button class='btnLibre'>✔️</button></td>
-    //         <td><button class='btnOcupado'>🚫</button></td>
-    //         <td><button class='btnEstropeado'>🛠️</button></td></tr>";
-    // }
-    // echo "</table>";
+    /*
+    if (isset($_POST['statusLibre'])) {
+        
+        $sql = "UPDATE utiles 
+            SET estado_util = 'libre' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+        "
+        $MyBBDD->consulta($sql);
+    }
+    
+    if (isset($_POST['statusOcup'])) {
+        
+        $sql = "UPDATE utiles 
+            SET estado_util = 'ocupado' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+        "
+        $MyBBDD->consulta($sql);
+    }
+    if (isset($_POST['statusEstro'])) {
+        
+        $sql = "UPDATE utiles 
+            SET estado_util = 'ocupado' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+        "
+        $MyBBDD->consulta($sql);
+    }
+    
+    */
     ?>
 
 
@@ -127,9 +151,13 @@
         </form>
     </div>
 
-    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 
     <script src="main.js"></script>
+
+
+    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
+
+
 </body>
 
-</html> -->
+</html>

@@ -23,16 +23,8 @@
         Contraseña<input type="password" required name="password" placeholder="Contraseña*">
         Empresa<input type="text" required name="empresa" placeholder="Empresa*">
         Rol<input type="text" required name="rol" placeholder="Rol*">
-        <!-- ~~~~~~~~~~~ DE MOMENTO, METEMOS LA ID DE LA EMPRESA ~~~~~~~~~~~~4 -->
-        <!-- A ver como tratamos la empresa. Si pidiendo la ID en el formulario, o haciendo un select de la id 
-             where nombre = nombre -->
-
-        <!-- OTRA OPCIÓN es CARGARSE EL FORMULARIO DE REGISTRO y que lo haga un admin desde otro sitio -->
-
         <input type="submit" name="btn-reg" value="Enviar">
     </form>
-
-
 
     <br>
     <footer>Juan Antonio Amil y Antonio Marín</footer>
