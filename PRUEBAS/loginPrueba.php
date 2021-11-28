@@ -1,13 +1,13 @@
 <?php
 session_start();
 include 'conect_class.php'; // MUY IMPORTANTE.
-if (!isset($_COOKIE['inicio'])) {
-    // echo '<form method="GET" action ="loginPrueba.php">';
-    // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
-    // echo '</form>';
-    setcookie("inicio", 0, time() + 6000, "/");
+// if (!isset($_COOKIE['inicio'])) {
+//     // echo '<form method="GET" action ="loginPrueba.php">';
+//     // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
+//     // echo '</form>';
+//     setcookie("inicio", 0, time() + 6000, "/");
 
- }
+//  }
 ?>
 
 
@@ -25,16 +25,16 @@ if (!isset($_COOKIE['inicio'])) {
 
     <!-- RECOGEMOS LOS DATOS PARA INICIAR SESION  -->
 
-    <form action="index.php" method="post">
-        <input type="text" name="user" placeholder="Usuario">
+    <form action="logearPrueba.php" method="post">
+        <input type="text" name="usuario" placeholder="Usuario">
         <br>
-        <input type="password" name="password" placeholder="Contraseña">
+        <input type="password" name="contrasena" placeholder="Contraseña">
         <br><br>
         <input type="submit" value="Iniciar sesión" name="btn-ini">
     </form>
-    <form action="registro.php" method="post">
+    <!-- <form action="registro.php" method="post">
         <input type="submit" value="Registrarse" name="btn-gotoreg">
-    </form>
+    </form> -->
    
 
 

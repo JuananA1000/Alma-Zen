@@ -2,61 +2,52 @@
 include 'conect_class.php'; // MUY IMPORTANTE.
 session_start();
 
-// //  CREAMOS LA COOKIE 'Estado' CON EL ID DE LA EMPRESA
-// include 'conect_class.php'; // MUY IMPORTANTE.
-// if (!isset($_COOKIE['Estado'])) {
-//     // echo '<form method="GET" action ="loginPrueba.php">';
-//     // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
-//     // echo '</form>';
-//     setcookie("Estado", 0, time() + 86400, "/");
-// }else{
+$id_empresa = $_SESSION["id_empresa"];
 
-// }
-
-// //  CREAMOS LA COOKIE 'UserId' CON EL ID DE LA EMPRESA
-// if (!isset($_COOKIE['UserId'])) {
-//     // echo '<form method="GET" action ="loginPrueba.php">';
-//     // echo '<input type="submit" value="Iniciar sesión" name="Inicia-sesión">';
-//     // echo '</form>';
-//     setcookie("UserId", 0, time() + 86400, "/");
-// }else{
-//}
-
-if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
-
-    $user = $_POST["user"];
-    $pass = $_POST["password"];
-
-
-
-    //      --- COMPROBAMOS QUE EL USUARIO PERTENECE A LA BBDD
-    $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$pass';";
-    echo $consulta;
-    $MyBBDD->consulta($consulta);
-    $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
-
-    if ($fila == false) { //si el logeo falla
-        echo "Datos incorrectos";
-    } else { // si el logeo es exitoso
-
-        //  CREAMOS LA COOKIE 'Estado' CON EL ID DE LA EMPRESA
-        $_COOKIE['UserId'] = $fila['id_user'];
-        if (!isset($_COOKIE['Estado'])) {
-            setcookie("Estado", $fila['id_empresa'], time() + 86400, "/");
-        } else {
-            $_COOKIE['Estado'] = $fila['id_empresa'];
-        }
-
-        //  CREAMOS LA COOKIE 'UserId' CON EL ID DE LA EMPRESA
-        if (!isset($_COOKIE['UserId'])) {
-            setcookie("UserId", $fila['id_user'], time() + 86400, "/");
-        } else {
-            $_COOKIE['UserId'] = $fila['id_user'];
-        }
-       
-        echo 'Sesión iniciada con éxito. Usuario: ' .  $fila['user'] . ' Id del usuario: ' .  $_COOKIE['UserId'];
-    }
+if(!isset ($id_empresa)){
+    header("location: sesion/login.php");
+}else{
+    echo '<h1>BIENVENIDO </h1>';
+    echo '<form method="post" action="sesion/salir.php">
+    <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
+</form>'; //IMPRIME EL BOTON DE SALIR
 }
+
+// if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
+
+//     $user = $_POST["user"];
+//     $pass = $_POST["password"];
+
+
+
+//     //      --- COMPROBAMOS QUE EL USUARIO PERTENECE A LA BBDD
+//     $consulta = "SELECT * FROM usuarios WHERE user='$user' AND password='$pass';";
+//     echo $consulta;
+//     $MyBBDD->consulta($consulta);
+//     $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
+
+//     if ($fila == false) { //si el logeo falla
+//         echo "Datos incorrectos";
+//     } else { // si el logeo es exitoso
+
+//         //  CREAMOS LA COOKIE 'Estado' CON EL ID DE LA EMPRESA
+//         $_COOKIE['UserId'] = $fila['id_user'];
+//         if (!isset($_COOKIE['Estado'])) {
+//             setcookie("Estado", $fila['id_empresa'], time() + 86400, "/");
+//         } else {
+//             $_COOKIE['Estado'] = $fila['id_empresa'];
+//         }
+
+//         //  CREAMOS LA COOKIE 'UserId' CON EL ID DE LA EMPRESA
+//         if (!isset($_COOKIE['UserId'])) {
+//             setcookie("UserId", $fila['id_user'], time() + 86400, "/");
+//         } else {
+//             $_COOKIE['UserId'] = $fila['id_user'];
+//         }
+       
+//         echo 'Sesión iniciada con éxito. Usuario: ' .  $fila['user'] . ' Id del usuario: ' .  $_COOKIE['UserId'];
+//     }
+// }
 
 ?>
 <!DOCTYPE html>
@@ -70,14 +61,14 @@ if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
     <title>Inicio</title>
 </head>
 <!-- Imprimimos el boton Iniciar sesion -->
-<form method="post" action="login.php">
+<!-- <form method="post" action="login.php">
     <input type="submit" value="Iniciar Sesión" name="inicia-sesion">
-</form>
+</form> -->
 
 <!-- Imprimimos el boton de cerrar sesión sesion -->
-<form method="post" action="login.php">
+<!-- <form method="post" action="login.php">
     <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
-</form>
+</form> -->
 
 
 <body>
@@ -88,12 +79,12 @@ if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
     <?php
 
     // CIERRA LA SESION
-    if (isset($_POST['cierra-sesion'])) {
-        $_COOKIE['Estado'] = 0;
-    }
+    // if (isset($_POST['cierra-sesion'])) {
+    //     $_COOKIE['Estado'] = 0;
+    // }
 
 
-    $id_empresa = $_COOKIE['Estado'];
+    
     if (isset($_POST['addEmple'])) {
         $nombre_empleado = $_POST['nombre_empleado'];
         $apellidos_empleado = $_POST['apellidos_empleado'];
@@ -120,7 +111,7 @@ if (isset($_POST['btn-ini'])) { //btn-ini viene de login.php
     <h3 class="cabecera"> Herramientas</h3>
 
     <?php
- echo '<h1>Cookie estado (idempresa): ' . $_COOKIE['Estado'] . '</h1><br>';
+ echo '<h1>ID DE LA EMPRESA (idempresa): ' . $id_empresa . '</h1><br>';
     if (isset($_POST['addHerr'])) {
         $marca_util = $_POST['marca_util'];
         $modelo_util = $_POST['modelo_util'];
