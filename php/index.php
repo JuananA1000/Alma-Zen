@@ -28,7 +28,6 @@ if(!isset ($id_empresa)){
 </head>
 <body>
     <h1>ALMA-ZEN</h1>
-
  
     <?php
     if (isset($_POST['addEmple'])) {
@@ -49,7 +48,7 @@ if(!isset ($id_empresa)){
     echo "<div class='contenidoTabla'>";
     while ($fila = $MyBBDD->extraerRegistro()) {
         echo "<p>" . $fila['nombre_empleado'] . " " .
-            $fila['apellidos_empleado'] . "<a>Ver Historial</a>" . "</pr>";
+            $fila['apellidos_empleado'] . "</p>";
     }
     echo "</div>"
     ?>
@@ -71,6 +70,36 @@ if(!isset ($id_empresa)){
         $MyBBDD->consulta($sql);
     }
 
+    /*if (isset($_POST['statusLibre'])) {
+        
+        $sql = "UPDATE utiles 
+            SET estado_util = 'libre' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+        ";
+        $MyBBDD->consulta($sql);
+    }*/
+
+    if (isset($_POST['statusOcup'])) {
+        $id_util = $_POST['id_util'];
+        $sql =
+            "UPDATE utiles 
+            SET estado_util = 'ocupado' 
+            WHERE id_util = $id_util;
+        ";
+        $MyBBDD->consulta($sql);
+    }
+
+    /*if (isset($_POST['statusEstro'])) {
+        
+        $sql = "UPDATE utiles 
+            SET estado_util = 'ocupado' 
+            WHERE id_util = $id_util
+            AND id_empresa = $id_empresa;
+        ";
+        $MyBBDD->consulta($sql);
+    }*/
+
     $sql = "SELECT * FROM utiles
         WHERE id_empresa = $id_empresa;
     ";
@@ -85,45 +114,12 @@ if(!isset ($id_empresa)){
             "<td>" . $fila['modelo_util'] . "</td>" .
             "<td>" .   $fila['categoria_util'] . "</td>" .
             "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
-            "<td><button name='statusLibre' class='btnLibre'>✔️</button></td>
+            "<td><input type='submit' value='✔️' name='statusLibre' class='btnLibre'></td>
             <td><button name='statusOcup' class='btnOcupado'>🚫</button></td>
             <td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
     }
     echo "</table>";
-
-    /*
-    if (isset($_POST['statusLibre'])) {
-        
-        $sql = "UPDATE utiles 
-            SET estado_util = 'libre' 
-            WHERE id_util = $id_util
-            AND id_empresa = $id_empresa;
-        "
-        $MyBBDD->consulta($sql);
-    }
-    
-    if (isset($_POST['statusOcup'])) {
-        
-        $sql = "UPDATE utiles 
-            SET estado_util = 'ocupado' 
-            WHERE id_util = $id_util
-            AND id_empresa = $id_empresa;
-        "
-        $MyBBDD->consulta($sql);
-    }
-    if (isset($_POST['statusEstro'])) {
-        
-        $sql = "UPDATE utiles 
-            SET estado_util = 'ocupado' 
-            WHERE id_util = $id_util
-            AND id_empresa = $id_empresa;
-        "
-        $MyBBDD->consulta($sql);
-    }
-    
-    */
     ?>
-
 
     <div class="contenidoFormulario">
         <form method="POST">
@@ -155,15 +151,8 @@ if(!isset ($id_empresa)){
             </fieldset>
         </form>
     </div>
-
-    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
-
     <script src="main.js"></script>
-
-
     <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
-
-
 </body>
 
 </html>

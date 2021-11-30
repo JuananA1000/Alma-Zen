@@ -3,7 +3,7 @@ let btnOcupado = document.getElementsByClassName("btnOcupado");
 let btnEstropeado = document.getElementsByClassName("btnEstropeado");
 
 function estadoLibre() {
-    alert('Herramienta desocupada.')
+    alert('Herramienta libre.')
     console.log("Estado Libre");
 }
 
