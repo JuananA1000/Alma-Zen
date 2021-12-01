@@ -42,11 +42,6 @@ if (!isset($_COOKIE['inicio'])) {
     <form action="registro.php" method="post">
         <input type="submit" value="Registrarse" name="btn-gotoreg">
     </form>
-
-
-
-
-
 </body>
 
 </html>

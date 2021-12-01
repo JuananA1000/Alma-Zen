@@ -15,8 +15,8 @@ $fila = $MyBBDD->extraerRegistro(); //nos devuelve los datos de la sentencia
 
 if ($fila == false) { //si el logeo falla
    // echo "Datos incorrectos";
-    header("location: login.php"); //Nos lleva a login
+    header("location: index.php"); //Nos lleva a login
  }  else { // si el logeo es exitoso
     $_SESSION['id_empresa'] = $fila['id_empresa'];
-    header("location: ../index.php");  //nos lleva al index
+    header("location: ../empresas.php");  //nos lleva a la página de empresas
      }
