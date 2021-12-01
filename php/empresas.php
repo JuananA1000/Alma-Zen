@@ -151,7 +151,7 @@ if(!isset ($id_empresa)){
             </fieldset>
         </form>
     </div>
-    <script src="main.js"></script>
+    <script src="javaScript/main.js"></script>
     <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 </body>
 
