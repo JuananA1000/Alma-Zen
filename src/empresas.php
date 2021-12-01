@@ -24,10 +24,18 @@ if(!isset ($id_empresa)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>Inicio</title>
+    <title>
+
+
+    </title>
 </head>
 <body>
-    <h1>ALMA-ZEN</h1>
+    <h1>AlmaZen</h1>
+    <!-- 
+        Aquí estaría bien que apareciera el nombre de la empresa,
+        como en github, que apareciera por ejemplo: AlmaZen | Copimsa
+     -->
+    <h3 class="cabecera">Empleados</h3>
  
     <?php
     if (isset($_POST['addEmple'])) {
@@ -45,18 +53,18 @@ if(!isset ($id_empresa)){
     ";
     $MyBBDD->consulta($sql);
 
-    echo "<div class='contenidoTabla'>";
+    echo "<table id='tablaHerramientas'><tr>";
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo "<p>" . $fila['nombre_empleado'] . " " .
-            $fila['apellidos_empleado'] . "</p>";
+        echo "<tr><td>" . $fila['nombre_empleado'] . " " .
+            $fila['apellidos_empleado'] . "</td></tr>";
     }
-    echo "</div>"
+    echo "</tr></table>";
     ?>
 
     <h3 class="cabecera"> Herramientas</h3>
 
     <?php
- echo '<h1>ID DE LA EMPRESA (idempresa): ' . $id_empresa . '</h1><br>';
+ 
     if (isset($_POST['addHerr'])) {
         $marca_util = $_POST['marca_util'];
         $modelo_util = $_POST['modelo_util'];
@@ -70,15 +78,6 @@ if(!isset ($id_empresa)){
         $MyBBDD->consulta($sql);
     }
 
-    /*if (isset($_POST['statusLibre'])) {
-        
-        $sql = "UPDATE utiles 
-            SET estado_util = 'libre' 
-            WHERE id_util = $id_util
-            AND id_empresa = $id_empresa;
-        ";
-        $MyBBDD->consulta($sql);
-    }*/
 
     if (isset($_POST['statusOcup'])) {
         $id_util = $_POST['id_util'];

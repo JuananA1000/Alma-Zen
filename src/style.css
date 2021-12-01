@@ -1,3 +1,4 @@
+
 body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
@@ -8,6 +9,7 @@ body {
 
 h1{
     text-shadow:rgb(156, 156, 156) 3px 3px 5px;
+text-align: center;
 }
 
 /* REGISTER.PHP */
@@ -17,7 +19,7 @@ h1{
     padding: 20px;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(202, 202, 202);
+    border: 1px solid rgb(206, 7, 7);
 }
 
 p {
