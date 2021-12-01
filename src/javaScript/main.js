@@ -1,20 +1,25 @@
 let btnLibre = document.getElementsByClassName("btnLibre");
 let btnOcupado = document.getElementsByClassName("btnOcupado");
 let btnEstropeado = document.getElementsByClassName("btnEstropeado");
-
+let fila= document.getElementById('fila')
+   
+// elimina el color de la fila
 function estadoLibre() {
-    alert('Herramienta libre.')
+    fila.style.backgroundColor=""
     console.log("Estado Libre");
 }
 
-function estadoOcupado() {
-    alert('Herramienta en uso. Escoja otra')
+
+// Pinta de rojo la fila
+function estadoOcupado() { 
+    fila.style.backgroundColor='red' 
     console.log("Estado Ocupado");
 }
 
+// Pinta de amarillo la fila
 function estadoEstropeado() {  
-    alert('Herramienta fuera de servicio o en reparación. Escoja otra')
-    console.log("Estado estropeado");
+    fila.style.backgroundColor='yellow' 
+   console.log("Estado estropeado");
 }
 
 for (let i = 0; i < btnLibre.length; i++) {

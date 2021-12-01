@@ -109,7 +109,7 @@ if(!isset ($id_empresa)){
     <th>Libre</th><th>En uso</th><th>Defectuoso</th></tr>";
 
     while ($fila = $MyBBDD->extraerRegistro()) {
-        echo "<tr><td>" . $fila['marca_util'] . "</td>" .
+        echo "<tr id='fila'><td>" . $fila['marca_util'] . "</td>" .
             "<td>" . $fila['modelo_util'] . "</td>" .
             "<td>" .   $fila['categoria_util'] . "</td>" .
             "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
