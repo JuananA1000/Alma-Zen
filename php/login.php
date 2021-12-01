@@ -27,12 +27,12 @@ if (!isset($_COOKIE['inicio'])) {
  
     <!-- 
         RECOGEMOS LOS DATOS PARA INICIAR SESION
-        
+
         AVISO IMPORTANTE: este archivo, deberá llamarse index.html, pues será la primera página a la que
         apunte el servidor cuando despleguemos la app 
     -->
 
-    <form action="index.php" method="post">
+    <form action="empresas.php" method="post">
         <input type="text" name="user" placeholder="Usuario">
         <br>
         <input type="password" name="password" placeholder="Contraseña">
