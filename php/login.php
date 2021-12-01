@@ -16,12 +16,21 @@ if (!isset($_COOKIE['inicio'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- RECOGEMOS LOS DATOS PARA INICIAR SESION  -->
+
+<h1>ALMA-ZEN</h1>
+ 
+    <!-- 
+        RECOGEMOS LOS DATOS PARA INICIAR SESION
+        
+        AVISO IMPORTANTE: este archivo, deberá llamarse index.html, pues será la primera página a la que
+        apunte el servidor cuando despleguemos la app 
+    -->
 
     <form action="index.php" method="post">
         <input type="text" name="user" placeholder="Usuario">
