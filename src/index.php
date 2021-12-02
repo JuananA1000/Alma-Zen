@@ -12,9 +12,10 @@ if (!isset($id_empresa)) {
     echo "<h1>Bienvenido al AlmaZen de $nombre_empresa</h1>";
 
     //IMPRIME EL BOTON DE SALIR
-    echo '<form method="post" action="sesion/salir.php">
-    <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
-</form>';
+    echo '
+    <form method="post" action="sesion/salir.php">
+        <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
+    </form>';
 }
 ?>
 <!DOCTYPE html>

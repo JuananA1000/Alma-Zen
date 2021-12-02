@@ -14,8 +14,9 @@ if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
 
 if (isset($_POST['tick'])) {
     $id_util = $_POST['id_util'];
-    $sql = "UPDATE utiles
-                SET estado_util = 'libre'
+     
+    $sql = "    UPDATE utiles
+                SET estado_util = 'ocupado'
                 WHERE id_util = $id_util;
             ";
     $MyBBDD->consulta($sql);
