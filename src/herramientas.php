@@ -1,4 +1,24 @@
 <?php
+include 'conect_class.php'; // MUY IMPORTANTE.
+session_start();
+
+echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
+
+//DIBUJAMOS EL NAVBAR
+
+ECHO '<div class="topnav">
+<a  href="index.php">Home</a>
+<a href="empleados.php">Empleados</a>
+<a class="active" href="herramientas.php">Herramientas</a>
+<a href="#about">About</a>
+</div>';
+
+//Recogemos las variables de sesión
+$id_empresa = $_SESSION["id_empresa"];
+$nombre_empresa = $_SESSION["nombre_empresa"];
+
+
+ echo '<h3 class="cabecera">Empleados</h3>';
 if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
     $marca_util = $_POST['marca_util'];
     $modelo_util = $_POST['modelo_util'];

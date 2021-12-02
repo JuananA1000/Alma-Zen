@@ -7,7 +7,7 @@ if(!isset ($id_empresa)){
     header("location: loginPrueba.php");
 }else{
     echo '<h1>BIENVENIDO </h1>';
-    echo '<form method="post" action="salir.php">
+    echo '<form method="post" action="salirPrueba.php">
     <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
 </form>'; //IMPRIME EL BOTON DE SALIR
 }
