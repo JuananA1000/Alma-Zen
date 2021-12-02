@@ -18,6 +18,15 @@ if (!isset($id_empresa)) {
         <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
     </form>';
 }
+
+
+echo '<div class="topnav">
+<a class="active" href="index.php">Home</a>
+<a href="empleados.php">Empleados</a>
+<a href="herramientas.php">Herramientas</a>
+<a href="#about">About</a>
+<p class="nombre_empresa">'. strtoupper($nombre_empresa ).'</p>
+</div>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,22 +44,6 @@ if (!isset($id_empresa)) {
 
 <body>
 
-<!-- NAVBAR -->
-<div class="topnav">
-  <a class="active" href="index.php">Home</a>
-  <a href="empleados.php">Empleados</a>
-  <a href="herramientas.php">Herramientas</a>
-  <a href="#about">About</a>
-</div>
-   
-
-    
-
-    <h3 class="cabecera"> Herramientas</h3>
-
-    <?php
-    //include 'herr.php';
-    ?>
 
     <div class="contenidoFormulario">
         <form method="POST">
