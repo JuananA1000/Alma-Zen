@@ -2,20 +2,19 @@
 include 'conect_class.php'; // MUY IMPORTANTE.
 session_start();
 
-$id_empresa = $_SESSION["id_empresa"]; 
-$nombre_empresa = $_SESSION["nombre_empresa"]; 
+$id_empresa = $_SESSION["id_empresa"];
+$nombre_empresa = $_SESSION["nombre_empresa"];
 
 //Si la variable de sesion no tiene valor
-if(!isset ($id_empresa)){ 
+if (!isset($id_empresa)) {
     header("location: sesion/login.php");
-}else{
-    echo "<h1>Bienvenido al almacén de $nombre_empresa</h1>";
+} else {
+    echo "<h1>Bienvenido al AlmaZen de $nombre_empresa</h1>";
 
     //IMPRIME EL BOTON DE SALIR
     echo '<form method="post" action="sesion/salir.php">
     <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
-</form>'; 
-
+</form>';
 }
 ?>
 <!DOCTYPE html>
@@ -31,16 +30,12 @@ if(!isset ($id_empresa)){
 
     </title>
 </head>
+
 <body>
-    <h1>AlmaZen</h1>
-    <!-- 
-        Aquí estaría bien que apareciera el nombre de la empresa,
-        como en github, que apareciera por ejemplo: AlmaZen | Copimsa
-     -->
     <h3 class="cabecera">Empleados</h3>
- 
+
     <?php
-    if (isset($_POST['addEmple'])) {
+    if (isset($_POST['addEmple']) &&  $_POST['nombre_empleado'] != "") {
         $nombre_empleado = $_POST['nombre_empleado'];
         $apellidos_empleado = $_POST['apellidos_empleado'];
 
@@ -66,8 +61,8 @@ if(!isset ($id_empresa)){
     <h3 class="cabecera"> Herramientas</h3>
 
     <?php
- 
-    if (isset($_POST['addHerr'])) {
+
+    if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
         $marca_util = $_POST['marca_util'];
         $modelo_util = $_POST['modelo_util'];
         $categoria_util = $_POST['categoria_util'];
@@ -80,26 +75,14 @@ if(!isset ($id_empresa)){
         $MyBBDD->consulta($sql);
     }
 
-
-    if (isset($_POST['statusOcup'])) {
+    if (isset($_POST['tick'])) {
         $id_util = $_POST['id_util'];
-        $sql =
-            "UPDATE utiles 
-            SET estado_util = 'ocupado' 
-            WHERE id_util = $id_util;
-        ";
+        $sql = "UPDATE utiles
+                SET estado_util = 'libre'
+                WHERE id_util = $id_util;
+            ";
         $MyBBDD->consulta($sql);
     }
-
-    /*if (isset($_POST['statusEstro'])) {
-        
-        $sql = "UPDATE utiles 
-            SET estado_util = 'ocupado' 
-            WHERE id_util = $id_util
-            AND id_empresa = $id_empresa;
-        ";
-        $MyBBDD->consulta($sql);
-    }*/
 
     $sql = "SELECT * FROM utiles
         WHERE id_empresa = $id_empresa;
@@ -112,12 +95,14 @@ if(!isset ($id_empresa)){
 
     while ($fila = $MyBBDD->extraerRegistro()) {
         echo "<tr id='fila'><td>" . $fila['marca_util'] . "</td>" .
+            "<td>" . $fila['id_util'] . "</td>" .
             "<td>" . $fila['modelo_util'] . "</td>" .
             "<td>" .   $fila['categoria_util'] . "</td>" .
             "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
-            "<td><input type='submit' value='✔️' name='statusLibre' class='btnLibre'></td>
-            <td><button name='statusOcup' class='btnOcupado'>🚫</button></td>
-            <td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
+            "<td>" . $fila['estado_util'] . "</td>" .
+            "<td><input type='submit' value='✔️' name='tick'></td></tr>";
+        // <td><button name='statusOcup' class='btnOcupado'>🚫</button></td>
+        // <td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
     }
     echo "</table>";
     ?>
@@ -143,9 +128,9 @@ if(!isset ($id_empresa)){
                 <p>Categoría: <input type="text" name="categoria_util"></p>
                 <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
                 <p>Estado: <select name="estado_util">
-                        <option value="Libre">Libre</option>
-                        <option value="Ocupado">Ocupado</option>
-                        <option value="Estropeado">Estropeado</option>
+                        <option value="libre">libre</option>
+                        <option value="ocupado">ocupado</option>
+                        <option value="estropeado">estropeado</option>
                     </select>
                 </p>
                 <input type="submit" name="addHerr" value="Insertar Herramienta">
