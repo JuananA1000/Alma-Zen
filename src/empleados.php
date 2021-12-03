@@ -14,6 +14,7 @@ echo '<div class="topnav">
 <a class="active" href="empleados.php">Empleados</a>
 <a  href="herramientas.php">Herramientas</a>
 <a href="#about">About</a>
+<a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
 <p class="nombre_empresa">'. strtoupper($nombre_empresa ).'</p>
 </div>';
 

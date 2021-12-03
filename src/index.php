@@ -9,15 +9,16 @@ $nombre_empresa = $_SESSION["nombre_empresa"];
 //Si la variable de sesion no tiene valor
 if (!isset($id_empresa)) {
     header("location: sesion/login.php");
-} else {
-    echo "<h1>Bienvenido al AlmaZen de $nombre_empresa</h1>";
-
-    //IMPRIME EL BOTON DE SALIR
-    echo '
-    <form method="post" action="sesion/salir.php">
-        <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
-    </form>';
 }
+//  else {
+//     echo "<h1>Bienvenido al AlmaZen de $nombre_empresa</h1>";
+
+//     //IMPRIME EL BOTON DE SALIR
+//     echo '
+//     <form method="post" action="sesion/salir.php">
+//         <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
+//     </form>';
+// }
 
 
 echo '<div class="topnav">
@@ -25,9 +26,8 @@ echo '<div class="topnav">
 <a href="empleados.php">Empleados</a>
 <a href="herramientas.php">Herramientas</a>
 <a href="#about">About</a>
+<a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
 <p class="nombre_empresa">'. strtoupper($nombre_empresa ).'</p>
-<a href="sesion/salir.php"><img src="../logo-azul-32.png"></a>
-
 </div>';
 ?>
 <!DOCTYPE html>
