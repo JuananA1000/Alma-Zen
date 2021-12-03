@@ -26,6 +26,8 @@ echo '<div class="topnav">
 <a href="herramientas.php">Herramientas</a>
 <a href="#about">About</a>
 <p class="nombre_empresa">'. strtoupper($nombre_empresa ).'</p>
+<a href="sesion/salir.php"><img src="../logo-azul-32.png"></a>
+
 </div>';
 ?>
 <!DOCTYPE html>

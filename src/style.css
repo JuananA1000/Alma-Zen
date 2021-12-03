@@ -3,6 +3,7 @@
      min-height: 100vh;
      display: flex;
      flex-direction: column;
+     background-color: black;
  }
  
  h1 {
@@ -67,7 +68,7 @@
  
  .topnav {
      overflow: visible;
-     background-color: #333;
+     background-color: #2898c1;
      height: 50px;
  }
  
