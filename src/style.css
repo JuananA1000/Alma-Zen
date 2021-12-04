@@ -1,113 +1,133 @@
- body {
-     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-     min-height: 100vh;
-     display: flex;
-     flex-direction: column;
- }
- 
- h1 {
-     text-shadow: rgb(156, 156, 156) 3px 3px 5px;
-     text-align: center;
- }
- /* REGISTER.PHP */
- 
- .formulario {
-     height: 240px;
-     width: 400px;
-     padding: 20px;
-     display: flex;
-     flex-direction: column;
-     border: 1px solid rgb(206, 7, 7);
- }
- 
- p {
-     margin: 0%;
-     /* Eliminamos los márgenes en empleados y herramientas*/
- }
- 
- .cabecera {
-     border: 1px solid rgb(202, 202, 202);
-     padding: 10px;
-     box-shadow: rgb(156, 156, 156) 3px 3px 5px;
- }
- 
- .contenedorFormularios {
-     display: flex;
-     flex-direction: row;
- }
- 
- .contenidoFormulario {
-     /* Flex item */
-     margin-bottom: 1cm;
- }
- /* El contenido de la bbdd. Empleados y herramientas*/
- 
- #tablaHerramientas,
- th,
- tr,
- td {
-     border: 1px solid rgb(202, 202, 202);
-     border-collapse: collapse;
-     margin-bottom: 10px;
-     /* DUDA: Separamos un momento los formularios */
-     padding: 10px;
- }
- 
- #tablaHerramientas {
-     box-shadow: rgb(156, 156, 156) 3px 3px 5px;
- }
- 
- footer {
-     /*TUTORIAL footer siempre abajo: https://www.youtube.com/watch?v=PSD5pFi6bx4*/
-     border: rgb(202, 202, 202) 1px solid;
-     margin-top: auto;
-     box-shadow: rgb(156, 156, 156) 3px 3px 5px;
- }
- /* INICIO NAVBAR */
- 
- .topnav {
-     overflow: visible;
-     /*color del fondo de la x */
-     background-color: #2898c1;
-     /*color de la sombra de la x */
-     /* background-color: #217b9a; */
-     height: 49.6px;
- }
- 
- .topnav a {
-     float: left;
-     color: #f2f2f2;
-     text-align: center;
-     text-decoration: none;
-     padding: 14px 16px;
-     font-size: 18px;
- }
- 
- .topnav a:hover {
-     background-color: #ddd;
-     color: black;
- }
- 
- .topnav a.active {
-     background-color: #04AA6D;
-     color: white;
-     font-weight: bold;
- }
- 
- .topnav p.nombre_empresa {
-     font-weight: bold;
-     float: right;
-     color: #f2f2f2;
-     text-align: center;
-     padding-right: 5px;
-     font-size: 45px;
-     line-height: 50px;
-     padding-right: 20px;
- }
- 
- .topnav a.cerrar-sesion {
-     float: right;
-     /* padding-right: 15px; */
-     padding: 9px 9px;
- }
- /* FIN NAVBAR */
+body {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#divForm{
+    margin:0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.formIniSesion{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 17px;
+    width: 300px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    text-shadow: rgb(156, 156, 156) 3px 3px 5px;
+    text-align: center;
+}
+/* REGISTER.PHP */
+
+.formulario {
+    height: 240px;
+    width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(206, 7, 7);
+}
+
+p {
+    margin: 0%;
+    /* Eliminamos los márgenes en empleados y herramientas*/
+}
+
+.cabecera {
+    border: 1px solid rgb(202, 202, 202);
+    padding: 10px;
+    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
+}
+
+.contenedorFormularios {
+    display: flex;
+    flex-direction: row;
+}
+
+.contenidoFormulario {
+    /* Flex item */
+    margin-bottom: 1cm;
+}
+/* El contenido de la bbdd. Empleados y herramientas*/
+
+#tablaHerramientas,
+th,
+tr,
+td {
+    border: 1px solid rgb(202, 202, 202);
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    /* DUDA: Separamos un momento los formularios */
+    padding: 10px;
+}
+
+#tablaHerramientas {
+    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
+}
+
+footer {
+    /*TUTORIAL footer siempre abajo: https://www.youtube.com/watch?v=PSD5pFi6bx4*/
+    border: rgb(202, 202, 202) 1px solid;
+    margin-top: auto;
+    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
+}
+/* INICIO NAVBAR */
+
+.topnav {
+    overflow: visible;
+    /*color del fondo de la x */
+    background-color: #2898c1;
+    /*color de la sombra de la x */
+    /* background-color: #217b9a; */
+    height: 49.6px;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    padding: 14px 16px;
+    font-size: 18px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: #04aa6d;
+    color: white;
+    font-weight: bold;
+}
+
+.topnav p.nombre_empresa {
+    font-weight: bold;
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding-right: 5px;
+    font-size: 45px;
+    line-height: 50px;
+    padding-right: 20px;
+}
+
+.topnav a.cerrar-sesion {
+    float: right;
+    /* padding-right: 15px; */
+    padding: 9px 9px;
+}
+/* FIN NAVBAR */

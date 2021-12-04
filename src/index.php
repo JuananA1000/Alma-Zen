@@ -27,7 +27,7 @@ echo '<div class="topnav">
 <a href="herramientas.php">Herramientas</a>
 <a href="#about">About</a>
 <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
-<p class="nombre_empresa">'. strtoupper($nombre_empresa ).'</p>
+<p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
 </div>';
 ?>
 <!DOCTYPE html>
@@ -39,13 +39,15 @@ echo '<div class="topnav">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>
-
-    
+        <?php
+        echo $nombre_empresa;
+        ?>
     </title>
 </head>
 
 <body>
 
+    <h1>ALMA-ZEN</h1>
 
     <div class="contenidoFormulario">
         <form method="POST">
@@ -54,7 +56,6 @@ echo '<div class="topnav">
                 <p>Nombre: <input type="text" name="nombre_empleado"></p>
                 <p>Apellidos: <input type="text" name="apellidos_empleado"></p>
                 <input type="submit" name="addEmple" value="Insertar Empleado">
-
             </fieldset>
         </form>
     </div>

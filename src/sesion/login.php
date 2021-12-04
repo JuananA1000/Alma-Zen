@@ -15,17 +15,20 @@ include '../conect_class.php'; // MUY IMPORTANTE.
 </head>
 
 <body>
-
-    <!-- RECOGEMOS LOS DATOS PARA INICIAR SESION  -->
-
-    <form action="logear.php" method="post">
-        <input type="text" name="usuario" placeholder="Usuario">
-        <br>
-        <input type="password" name="contrasena" placeholder="Contraseña">
-        <br><br>
-        <input type="submit" value="Iniciar sesión" name="btn-ini">
-    </form>
- 
+    <div id="divForm" >
+        <h1>ALMA-ZEN</h1>
+        <form action="logear.php" method="post" class="formIniSesion">
+            <div>
+                <label>Nombre</label><br>
+                <input type="text" name="usuario" placeholder="Usuario">
+            </div>
+            <div>
+                <label>Contraseña</label><br>
+                <input type="password" name="contrasena" placeholder="Contraseña">
+            </div>
+            <input type="submit" value="Iniciar sesión" name="btn-ini">
+        </form>
+    </div>
 </body>
 
 </html>
