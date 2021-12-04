@@ -10,14 +10,14 @@ echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL
 //DIBUJAMOS EL NAVBAR
 
 echo '<div class="topnav">
-<a  href="index.php">Home</a>
+<a href="index.php">Home</a>
 <a class="active" href="empleados.php">Empleados</a>
-<a  href="herramientas.php">Herramientas</a>
+<a href="herramientas.php">Herramientas</a>
+<a href="vehiculos.php">Vehículos</a>
 <a href="#about">About</a>
 <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
-<p class="nombre_empresa">'. strtoupper($nombre_empresa ).'</p>
+<p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
 </div>';
-
 
 
 echo '<h3 class="cabecera">Empleados</h3>';
