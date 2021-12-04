@@ -1,25 +1,25 @@
 body {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-        sans-serif;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: red;
 }
 
-#divForm{
-    margin:0;
+#divForm {
+    margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-.formIniSesion{
+.formIniSesion {
     border: 1px solid black;
     border-radius: 5px;
     padding: 17px;
     width: 300px;
-    position:absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -29,6 +29,8 @@ h1 {
     text-shadow: rgb(156, 156, 156) 3px 3px 5px;
     text-align: center;
 }
+
+
 /* REGISTER.PHP */
 
 .formulario {
@@ -60,6 +62,8 @@ p {
     /* Flex item */
     margin-bottom: 1cm;
 }
+
+
 /* El contenido de la bbdd. Empleados y herramientas*/
 
 #tablaHerramientas,
@@ -83,6 +87,8 @@ footer {
     margin-top: auto;
     box-shadow: rgb(156, 156, 156) 3px 3px 5px;
 }
+
+
 /* INICIO NAVBAR */
 
 .topnav {
@@ -130,4 +136,6 @@ footer {
     /* padding-right: 15px; */
     padding: 9px 9px;
 }
+
+
 /* FIN NAVBAR */
