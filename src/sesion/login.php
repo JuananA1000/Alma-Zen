@@ -30,6 +30,9 @@ include '../conect_class.php'; // MUY IMPORTANTE.
             <input type="submit" value="Iniciar sesión" name="btn-ini">
         </form>
     </div>
+
+    
+    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 </body>
 
 </html>
