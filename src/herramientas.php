@@ -8,7 +8,7 @@ echo '<title>' .
     $nombre_empresa . '</title>';
 echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
 
-//DIBUJAMOS EL NAVBAR
+echo '<h1>ALMA-ZEN</h1>';
 
 echo '<div class="topnav">
 <a  href="index.php">Home</a>
@@ -48,7 +48,7 @@ echo "<table id='tablaHerramientas'><tr>
 
 while ($fila = $MyBBDD->extraerRegistro()) {
     echo "<tr id='fila'><td>" . $fila['marca_util'] . "</td>" .
-       "<td>" . $fila['modelo_util'] . "</td>" .
+        "<td>" . $fila['modelo_util'] . "</td>" .
         "<td>" .   $fila['categoria_util'] . "</td>" .
         "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
         "<td>" . $fila['estado_util'] . "</td>" .
@@ -58,7 +58,7 @@ while ($fila = $MyBBDD->extraerRegistro()) {
 }
 echo "</table>";
 
-echo'
+echo '
 <div class="contenidoFormulario">
 <form method="POST">
     <fieldset>

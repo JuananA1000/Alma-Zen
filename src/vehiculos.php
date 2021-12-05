@@ -8,7 +8,7 @@ echo '<title>' .
     $nombre_empresa . '</title>';
 echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
 
-//DIBUJAMOS EL NAVBAR
+echo '<h1>ALMA-ZEN</h1>';
 
 echo '<div class="topnav">
 <a  href="index.php">Home</a>
