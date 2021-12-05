@@ -4,8 +4,8 @@ session_start();
 //Recogemos las variables de sesión
 $id_empresa = $_SESSION["id_empresa"];
 $nombre_empresa = $_SESSION["nombre_empresa"];
-
-
+echo '<title>' .
+    $nombre_empresa . '</title>';
 echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
 
 //DIBUJAMOS EL NAVBAR
@@ -29,16 +29,6 @@ if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
     $sql = "INSERT INTO utiles (marca_util, modelo_util, categoria_util, estado_util, herramienta_vehiculo, id_empresa) 
             VALUES ('$marca_util','$modelo_util','$categoria_util','$estado_util','$herramienta_vehiculo', '$id_empresa');
         ";
-    $MyBBDD->consulta($sql);
-}
-
-if (isset($_POST['tick'])) {
-    $id_util = $_POST['id_util'];
-     
-    $sql = "    UPDATE utiles
-                SET estado_util = 'ocupado'
-                WHERE id_util = $id_util;
-            ";
     $MyBBDD->consulta($sql);
 }
 

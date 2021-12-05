@@ -71,6 +71,7 @@ tr,
 td {
     border: 1px solid rgb(202, 202, 202);
     border-collapse: collapse;
+    margin-top: 10px;
     margin-bottom: 10px;
     /* DUDA: Separamos un momento los formularios */
     padding: 10px;

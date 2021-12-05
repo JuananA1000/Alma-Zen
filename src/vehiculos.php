@@ -4,8 +4,8 @@ session_start();
 //Recogemos las variables de sesión
 $id_empresa = $_SESSION["id_empresa"];
 $nombre_empresa = $_SESSION["nombre_empresa"];
-
-
+echo '<title>' .
+    $nombre_empresa . '</title>';
 echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
 
 //DIBUJAMOS EL NAVBAR
@@ -19,9 +19,6 @@ echo '<div class="topnav">
 <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
 </div>';
 
-
-
- echo '<h3 class="cabecera">Vehiculos</h3>';
 if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
     $marca_util = $_POST['marca_util'];
     $modelo_util = $_POST['modelo_util'];
@@ -37,7 +34,7 @@ if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
 
 if (isset($_POST['tick'])) {
     $id_util = $_POST['id_util'];
-     
+
     $sql = "    UPDATE utiles
                 SET estado_util = 'ocupado'
                 WHERE id_util = $id_util;
