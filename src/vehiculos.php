@@ -32,16 +32,6 @@ if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
     $MyBBDD->consulta($sql);
 }
 
-if (isset($_POST['tick'])) {
-    $id_util = $_POST['id_util'];
-
-    $sql = "    UPDATE utiles
-                SET estado_util = 'ocupado'
-                WHERE id_util = $id_util;
-            ";
-    $MyBBDD->consulta($sql);
-}
-
 $sql = "SELECT * FROM utiles
         WHERE id_empresa = $id_empresa AND herramienta_vehiculo = 'vehiculo';
     ";
