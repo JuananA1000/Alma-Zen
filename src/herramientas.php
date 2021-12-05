@@ -15,14 +15,10 @@ echo '<div class="topnav">
 <a href="empleados.php">Empleados</a>
 <a class="active" href="herramientas.php">Herramientas</a>
 <a href="vehiculos.php">Vehículos</a>
-<a href="#about">About</a>
 <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
 <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
 </div>';
 
-
-
- echo '<h3 class="cabecera">Herramientas</h3>';
 if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
     $marca_util = $_POST['marca_util'];
     $modelo_util = $_POST['modelo_util'];
@@ -62,8 +58,7 @@ echo "<table id='tablaHerramientas'><tr>
 
 while ($fila = $MyBBDD->extraerRegistro()) {
     echo "<tr id='fila'><td>" . $fila['marca_util'] . "</td>" .
-        "<td>" . $fila['id_util'] . "</td>" .
-        "<td>" . $fila['modelo_util'] . "</td>" .
+       "<td>" . $fila['modelo_util'] . "</td>" .
         "<td>" .   $fila['categoria_util'] . "</td>" .
         "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
         "<td>" . $fila['estado_util'] . "</td>" .
