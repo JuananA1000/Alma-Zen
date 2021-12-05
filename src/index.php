@@ -20,15 +20,6 @@ if (!isset($id_empresa)) {
 //     </form>';
 // }
 
-
-echo '<div class="topnav">
-<a class="active" href="index.php">Home</a>
-<a href="empleados.php">Empleados</a>
-<a href="herramientas.php">Herramientas</a>
-<a href="vehiculos.php">Vehículos</a>
-<a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
-<p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
-</div>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +39,17 @@ echo '<div class="topnav">
 <body>
 
     <h1>ALMA-ZEN</h1>
+
+    <?php
+    echo '<div class="topnav">
+    <a class="active" href="index.php">Home</a>
+    <a href="empleados.php">Empleados</a>
+    <a href="herramientas.php">Herramientas</a>
+    <a href="vehiculos.php">Vehículos</a>
+    <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
+    <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
+    </div>';
+    ?>
 
     <div class="contenidoFormulario">
         <form method="POST">
