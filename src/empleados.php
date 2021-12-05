@@ -41,3 +41,16 @@ while ($fila = $MyBBDD->extraerRegistro()) {
         $fila['apellidos_empleado'] . "</td></tr>";
 }
 echo "</tr></table>";
+
+echo '
+<div class="contenidoFormulario">
+    <form method="POST">
+        <fieldset>
+            <legend>Empleados</legend>
+            <p>Nombre: <input type="text" name="nombre_empleado"></p>
+            <p>Apellidos: <input type="text" name="apellidos_empleado"></p>
+            <input type="submit" name="addEmple" value="Insertar Empleado">
+        </fieldset>
+    </form>
+</div>
+';

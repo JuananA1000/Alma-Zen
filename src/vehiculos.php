@@ -54,3 +54,24 @@ while ($fila = $MyBBDD->extraerRegistro()) {
     // <td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
 }
 echo "</table>";
+
+echo'
+<div class="contenidoFormulario">
+<form method="POST">
+    <fieldset>
+        <legend>Vehículos</legend>
+        <p>Marca: <input type="text" name="marca_util"></p>
+        <p>Modelo: <input type="text" name="modelo_util"></p>
+        <p>Categoría: <input type="text" name="categoria_util"></p>
+        <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
+        <p>Estado: <select name="estado_util">
+                <option value="libre">libre</option>
+                <option value="ocupado">ocupado</option>
+                <option value="estropeado">estropeado</option>
+            </select>
+        </p>
+        <input type="submit" name="addHerr" value="Insertar Vehiculo">
+    </fieldset>
+</form>
+</div>
+';
