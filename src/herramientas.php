@@ -63,16 +63,28 @@ echo '
 <form method="POST">
     <fieldset>
         <legend>Herramientas</legend>
-        <p>Marca: <input type="text" name="marca_util"></p>
-        <p>Modelo: <input type="text" name="modelo_util"></p>
-        <p>Categoría: <input type="text" name="categoria_util"></p>
-        <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
-        <p>Estado: <select name="estado_util">
-                <option value="libre">libre</option>
-                <option value="ocupado">ocupado</option>
-                <option value="estropeado">estropeado</option>
-            </select>
-        </p>
+    <div>
+        <label>Marca</label><br>
+        Marca: <input type="text" name="marca_util"></p>
+    </div>
+    <div>   
+        <label>Modelo</label><br>
+        Modelo: <input type="text" name="modelo_util"></p>
+    </div>
+    <div>
+        <label>Categoría</label><br>
+        Categoría: <input type="text" name="categoria_util">
+        <label>Herramienta</label><br>
+        Herramienta: <input type="text" name="herramienta_vehiculo"></p>
+    </div>
+    <div>
+    <label>Estado</label><br> 
+        <select name="estado_util">
+            <option value="libre">libre</option>
+            <option value="ocupado">ocupado</option>
+            <option value="estropeado">estropeado</option>
+        </select>
+    </div> 
         <input type="submit" name="addHerr" value="Insertar Herramienta">
     </fieldset>
 </form>

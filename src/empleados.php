@@ -45,8 +45,14 @@ echo '
     <form method="POST">
         <fieldset>
             <legend>Empleados</legend>
-            <p>Nombre: <input type="text" name="nombre_empleado"></p>
-            <p>Apellidos: <input type="text" name="apellidos_empleado"></p>
+        <div>
+            <label>Nombre</label><br>  
+            <input type="text" name="nombre_empleado">
+        </div>
+        <div>
+            <label>Apellido</label><br>
+            <input type="text" name="apellidos_empleado">
+        </div>
             <input type="submit" name="addEmple" value="Insertar Empleado">
         </fieldset>
     </form>
