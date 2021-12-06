@@ -52,13 +52,8 @@ p {
     box-shadow: rgb(156, 156, 156) 3px 3px 5px;
 }
 
-.contenedorFormularios {
-    display: flex;
-    flex-direction: row;
-}
-
 .contenidoFormulario {
-    /* Flex item */
+    background-color: #2898c1;
     margin-bottom: 1cm;
 }
 

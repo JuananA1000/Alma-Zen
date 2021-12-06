@@ -59,18 +59,34 @@ echo'
 <div class="contenidoFormulario">
 <form method="POST">
     <fieldset>
-        <legend>Vehículos</legend>
-        <p>Marca: <input type="text" name="marca_util"></p>
-        <p>Modelo: <input type="text" name="modelo_util"></p>
-        <p>Categoría: <input type="text" name="categoria_util"></p>
-        <p>Herramienta: <input type="text" name="herramienta_vehiculo"></p>
-        <p>Estado: <select name="estado_util">
+        <legend>Herramientas</legend>
+        <div>
+            <label>Marca</label><br>
+            <input type="text" name="marca_util"></p>
+        </div>
+        <div>   
+            <label>Modelo</label><br>
+            <input type="text" name="modelo_util"></p>
+        </div>
+        <div>
+            <label>Categoría</label><br>
+            <input type="text" name="categoria_util">
+        </div>
+        <div>    
+            <label>Herramienta</label><br>
+            <input type="text" name="herramienta_vehiculo"></p>
+        </div>
+        <div>
+        <label>Estado</label><br> 
+            <select name="estado_util">
                 <option value="libre">libre</option>
                 <option value="ocupado">ocupado</option>
                 <option value="estropeado">estropeado</option>
             </select>
-        </p>
-        <input type="submit" name="addHerr" value="Insertar Vehiculo">
+        </div> 
+        <div>
+            <input type="submit" name="addHerr" value="Insertar Herramienta">
+        </div>
     </fieldset>
 </form>
 </div>

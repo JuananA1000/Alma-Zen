@@ -63,29 +63,33 @@ echo '
 <form method="POST">
     <fieldset>
         <legend>Herramientas</legend>
-    <div>
-        <label>Marca</label><br>
-        Marca: <input type="text" name="marca_util"></p>
-    </div>
-    <div>   
-        <label>Modelo</label><br>
-        Modelo: <input type="text" name="modelo_util"></p>
-    </div>
-    <div>
-        <label>Categoría</label><br>
-        Categoría: <input type="text" name="categoria_util">
-        <label>Herramienta</label><br>
-        Herramienta: <input type="text" name="herramienta_vehiculo"></p>
-    </div>
-    <div>
-    <label>Estado</label><br> 
-        <select name="estado_util">
-            <option value="libre">libre</option>
-            <option value="ocupado">ocupado</option>
-            <option value="estropeado">estropeado</option>
-        </select>
-    </div> 
-        <input type="submit" name="addHerr" value="Insertar Herramienta">
+        <div>
+            <label>Marca</label><br>
+            <input type="text" name="marca_util"></p>
+        </div>
+        <div>   
+            <label>Modelo</label><br>
+            <input type="text" name="modelo_util"></p>
+        </div>
+        <div>
+            <label>Categoría</label><br>
+            <input type="text" name="categoria_util">
+        </div>
+        <div>    
+            <label>Herramienta</label><br>
+            <input type="text" name="herramienta_vehiculo"></p>
+        </div>
+        <div>
+        <label>Estado</label><br> 
+            <select name="estado_util">
+                <option value="libre">libre</option>
+                <option value="ocupado">ocupado</option>
+                <option value="estropeado">estropeado</option>
+            </select>
+        </div> 
+        <div>
+            <input type="submit" name="addHerr" value="Insertar Herramienta">
+        </div>
     </fieldset>
 </form>
 </div>
