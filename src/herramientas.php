@@ -76,7 +76,7 @@ echo '
             <input type="text" name="categoria_util">
         </div>
         <div>    
-            <label>Herramienta</label><br>
+            <label>Herramienta o Vehículo</label><br>
             <input type="text" name="herramienta_vehiculo"></p>
         </div>
         <div>

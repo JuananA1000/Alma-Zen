@@ -1,5 +1,6 @@
 body {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -29,7 +30,6 @@ h1 {
     text-align: center;
 }
 
-
 /* REGISTER.PHP */
 
 .formulario {
@@ -55,11 +55,25 @@ p {
 .contenidoFormulario {
     background-color: #2898c1;
     margin-bottom: 1cm;
+
+    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
 }
 
+.contenidoFormulario input[type="text"] {
+    height: 35px;
+    width: 50%;
+    border-radius: 50px;
+}
+
+.contenidoFormulario legend {
+    font-size: 18pt;
+}
+
+.contenidoFormulario input[type="submit"] {
+    margin-top: 10px;
+}
 
 /* El contenido de la bbdd. Empleados y herramientas*/
-
 #tablaHerramientas,
 th,
 tr,
@@ -68,7 +82,6 @@ td {
     border-collapse: collapse;
     margin-top: 10px;
     margin-bottom: 10px;
-    /* DUDA: Separamos un momento los formularios */
     padding: 10px;
 }
 
@@ -83,7 +96,6 @@ footer {
     box-shadow: rgb(156, 156, 156) 3px 3px 5px;
 }
 
-
 /* INICIO NAVBAR */
 
 .topnav {
@@ -93,6 +105,8 @@ footer {
     /*color de la sombra de la x */
     /* background-color: #217b9a; */
     height: 49.6px;
+
+    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
 }
 
 .topnav a {
@@ -131,6 +145,5 @@ footer {
     /* padding-right: 15px; */
     padding: 9px 9px;
 }
-
 
 /* FIN NAVBAR */

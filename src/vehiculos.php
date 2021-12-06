@@ -59,7 +59,7 @@ echo'
 <div class="contenidoFormulario">
 <form method="POST">
     <fieldset>
-        <legend>Herramientas</legend>
+        <legend>Vehículos</legend>
         <div>
             <label>Marca</label><br>
             <input type="text" name="marca_util"></p>
@@ -73,7 +73,7 @@ echo'
             <input type="text" name="categoria_util">
         </div>
         <div>    
-            <label>Herramienta</label><br>
+            <label>Herramienta o Vehículo</label><br>
             <input type="text" name="herramienta_vehiculo"></p>
         </div>
         <div>
@@ -85,7 +85,7 @@ echo'
             </select>
         </div> 
         <div>
-            <input type="submit" name="addHerr" value="Insertar Herramienta">
+            <input type="submit" name="addHerr" value="Insertar Vehículo">
         </div>
     </fieldset>
 </form>
