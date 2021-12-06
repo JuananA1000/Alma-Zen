@@ -71,7 +71,7 @@ CREATE TABLE `almazen`.`emple_util` (
 -- A continuación, insertamos  datos a cada una de las tablas:
 INSERT INTO almazen.empresas (nombre_empresa)
 VALUES
-  ('Compimsa'),
+	('Copimsa'),
 	('Gestenfeiser');
     
 INSERT INTO almazen.empleados
@@ -88,22 +88,22 @@ VALUES
 	('Belén','López', '1'),
 	('Alicia','Sanz', '1'),
 	('Lucía','Álvarez', '1'),
-  ('Roberto','Alonso', '1'),
+	('Roberto','Alonso', '1'),
 
-  ('Gregorio','Antúnez', '2'),
-  ('Bernardo','Marín', '2'),
-  ('Jesús','Quesada', '2'),
-  ('Julián','Palacios', '2'),
-  ('Mónica','Salazar', '2'),
-  ('Arturo','Cañas', '2'),
-  ('Victoria','de la Vega', '2'),
-  ('Maricarmen','Cañizares', '2'),
-  ('Ricardo','Mesa', '2'),
-  ('Sofía','Guillén', '2'),
-  ('Benito','Avendaño', '2'),
-  ('Nacha','Ruiz', '2'),
-  ('Marimar','Montes', '2');
-    
+	('Gregorio','Antúnez', '2'),
+	('Bernardo','Marín', '2'),
+	('Jesús','Quesada', '2'),
+	('Julián','Palacios', '2'),
+	('Mónica','Salazar', '2'),
+	('Arturo','Cañas', '2'),
+	('Victoria','de la Vega', '2'),
+	('Maricarmen','Cañizares', '2'),
+	('Ricardo','Mesa', '2'),
+	('Sofía','Guillén', '2'),
+	('Benito','Avendaño', '2'),
+	('Nacha','Ruiz', '2'),
+	('Marimar','Montes', '2');
+
 INSERT INTO almazen.utiles
 	(herramienta_vehiculo, categoria_util, marca_util, modelo_util, id_empresa)
 VALUES
@@ -122,4 +122,9 @@ VALUES
 	('vehículo', 'Dumper', 'AUSA', 'D201 RHS', '2'),
 	('vehículo', 'Dumper', 'AUSA', 'D250 RHGS', '2'),
 	('vehículo', 'Miniexcavadora', 'Kubota', 'KX 71-3', '2');
-
+    
+INSERT INTO almazen.usuarios
+(id_empresa, user, email, password, rol)
+VALUES
+	('1', 'juanan', '123@123', 'abcd', 'admin'),
+	('2', 'antonio', '456@456', 'abcd', 'admin');
