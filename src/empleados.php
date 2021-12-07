@@ -6,7 +6,7 @@ $id_empresa = $_SESSION["id_empresa"];
 $nombre_empresa = $_SESSION["nombre_empresa"];
 echo '<title>' .
     $nombre_empresa . '</title>';
-echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
+echo '<link rel="stylesheet" type="text/css" href="css/style.css" />'; //LLAMAMOS AL CSS
 echo'<h1>ALMA-ZEN</h1>';
 echo '
 <div class="topnav">
@@ -34,29 +34,41 @@ $sql = "SELECT * FROM empleados
     ";
 $MyBBDD->consulta($sql);
 
-echo "<table id='tablaHerramientas'><tr>";
+
+
+echo "<table class='tabla' id='tabla-empleados'>";
+echo "<tr><th>EMPLEADOS</th></tr>";
 while ($fila = $MyBBDD->extraerRegistro()) {
     echo "<tr><td>" . $fila['nombre_empleado'] . " " .
         $fila['apellidos_empleado'] . "</td></tr>";
 }
 echo "</tr></table>";
 
+
+//FORMULARIO PARA INSERTAR EMPLEADOS
 echo '
-<div class="contenidoFormulario">
+<div class="Formulario">
     <form method="POST">
         <fieldset>
-            <legend>Empleados</legend>
-        <div>
-            <label>Nombre</label><br>  
-            <input type="text" name="nombre_empleado">
+       
+        <div class="columna">
+           
+            <div>
+                <label class="label">Nombre</label><br>
+                <input class="campo-empleados" placeholder="Nombre" type="text" name="nombre_empleado">
+            </div>
+            <div>
+                <label class="label" id="apellidos">Apellidos</label><br>
+                <input class="campo-empleados" placeholder="Apellidos" type="text" name="apellidos_empleado">
+            </div>
+            <div>
+                <input id="insertar-empleado" type="submit" name="addEmple" value="Insertar Empleado">
+            </div>
         </div>
-        <div>
-            <label>Apellido</label><br>
-            <input type="text" name="apellidos_empleado">
-        </div>
-            <input type="submit" name="addEmple" value="Insertar Empleado">
         </fieldset>
     </form>
 </div>
-<footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
+
 ';
+
+echo '<footer>Juan Antonio Amil y Antonio Marín, 2021</footer>';

@@ -11,26 +11,26 @@ include '../conect_class.php'; // MUY IMPORTANTE.
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="../style.css">
+   <link rel="stylesheet" href="../css/login.css">
     <title>Login</title>
 </head>
 
 <body>
-    <div id="divForm" >
+    <div id="todo" >
         <h1>ALMA-ZEN</h1>
-        <form action="logear.php" method="post" class="contenidoFormulario">
-            <fieldset>
-                <legend>Inicio de Sesión</legend>
+        <form action="logear.php" method="post" class="cuadrado">
+          
+                <h3>Inicio de Sesión</h3>
         <div>
-                <label>Usuario</label><br>
-                <input type="text" name="usuario" placeholder="Usuario">
+                
+                <input  class="campo" type="text" name="usuario" placeholder="Usuario">
             </div>
             <div>
-                <label>Contraseña</label><br>
-                <input type="password" name="contrasena" placeholder="Contraseña">
+              
+                <input class="campo" type="password" name="contrasena" placeholder="Contraseña">
             </div>
-            <input type="submit" value="Iniciar sesión" name="btn-ini">
-            </fieldset>
+            <input id="btn-iniciar-sesion" type="submit" value="Iniciar sesión" name="btn-ini">
+            
         </form>
     </div>
 

@@ -6,7 +6,7 @@ $id_empresa = $_SESSION["id_empresa"];
 $nombre_empresa = $_SESSION["nombre_empresa"];
 echo '<title>' .
     $nombre_empresa . '</title>';
-echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
+echo '<link rel="stylesheet" type="text/css" href="css/style.css" />'; //LLAMAMOS AL CSS
 
 echo '<h1>ALMA-ZEN</h1>';
 
@@ -38,7 +38,7 @@ $sql = "SELECT * FROM utiles
     ";
 $MyBBDD->consulta($sql);
 
-echo "<table id='tablaHerramientas'><tr>
+echo "<table class='tabla'><tr>
     <th>Marca</th>
     <th>Modelo</th>
     <th>Categoría</th>

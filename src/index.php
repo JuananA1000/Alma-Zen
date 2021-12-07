@@ -21,7 +21,7 @@ if (!isset($id_empresa)) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <title>
         <?php
         echo $nombre_empresa;
@@ -43,13 +43,125 @@ if (!isset($id_empresa)) {
     <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
     <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
     </div>';
+
+//------------------------------------
+// --------ASIGNA HERRAMIENTAS--------
+// -----------------------------------
+echo"<div class='contenidoFormulario'>"; //abre el div de los select
+echo"<div class='asigna-herramientas'>"; //abre el div del select de herramienta
+
+
+$sql = "SELECT * FROM empleados
+        WHERE id_empresa = $id_empresa;
+    ";
+$MyBBDD->consulta($sql);
+
+echo"
+<form  method='post' class='SeleccionaUsuario'>
+
+    <select name='empleado'>";
+    echo" <option disabled selected value> -- EMPLEADO -- </option>";
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        $id_empleado = $fila['id_empleado'];
+        $nombre_empleado = $fila['nombre_empleado'];
+        $apellidos_empleado = $fila['apellidos_empleado'];
+        echo" <option value='$id_empleado'>$nombre_empleado  $apellidos_empleado</option>";
+      
+    }
+    echo"</select>";
+    
+
+
+    $sql = "SELECT * FROM utiles
+        WHERE estado_util = 'libre' AND id_empresa = $id_empresa AND herramienta_vehiculo = 'herramienta';
+    ";
+$MyBBDD->consulta($sql);
+
+echo"
+    <select name='util'>";
+    echo" <option disabled selected value> -- HERRAMIENTA -- </option>";
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        $id_util = $fila['id_util'];
+        $categoria_util = $fila['categoria_util'];
+        $marca_util = $fila['marca_util'];
+        $modelo_util = $fila['modelo_util'];
+      
+        echo" <option value='$id_util'>$categoria_util $marca_util  $modelo_util</option>";
+    }
+    echo"</select> <br>
+<input type='submit' value='Asignar' name='btn-asignar'>"; 
+
+
+echo"</div>"; //cierra el div del select de herramienta
+
+  //------------------------------------
+// --------ASIGNA VEHICULOS-----------
+// -----------------------------------
+
+echo"<div class='asigna-vehiculos'>"; //abre el div del select de vehiculos
+$sql = "SELECT * FROM empleados
+        WHERE id_empresa = $id_empresa;
+    ";
+$MyBBDD->consulta($sql);
+
+echo"
+<form  method='post' class='SeleccionaUsuario'>
+
+    <select name='empleado'>";
+    echo" <option disabled selected value> -- EMPLEADO -- </option>";
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        $id_empleado = $fila['id_empleado'];
+        $nombre_empleado = $fila['nombre_empleado'];
+        $apellidos_empleado = $fila['apellidos_empleado'];
+        echo" <option value='$id_empleado'>$nombre_empleado  $apellidos_empleado</option>";
+      
+    }
+    echo"</select> <br>";
+    
+
+
+    $sql = "SELECT * FROM utiles
+        WHERE estado_util = 'libre' AND id_empresa = $id_empresa AND herramienta_vehiculo = 'vehiculo';
+    ";
+$MyBBDD->consulta($sql);
+
+echo"<select name='util'>";
+    echo"<option disabled selected value> -- VEHICULO -- </option>";
+    while ($fila = $MyBBDD->extraerRegistro()) {
+        $id_util = $fila['id_util'];
+        $categoria_util = $fila['categoria_util'];
+        $marca_util = $fila['marca_util'];
+        $modelo_util = $fila['modelo_util'];
+      
+        echo" <option value='$id_util'>$categoria_util $marca_util  $modelo_util</option>";
+    }
+    echo"</select> <br>
+<input type='submit' value='Asignar' name='btn-asignar'>
+"; 
+
+//INSERTA EL REGISTRO EN LA BBDD
+if (isset($_POST['btn-asignar']) && $_POST['empleado'] != "" && $_POST['util'] != "") {
+    $id_empleado = $_POST['empleado'];
+    $id_util = $_POST['util'];
+    $fecha_hora = date("h:i:s");
+ 
+    $sql = "INSERT INTO emple_util (id_empleado, id_util, id_empresa, fecha_hora, is_devuelto) 
+    VALUES ('$id_empleado','$id_util', '$id_empresa','$fecha_hora', 0);
+";
+        
+    $MyBBDD->consulta($sql);
+}
+
+echo"</div>"; //cierra el div del select de vehiculos
+echo"</div>"; //cierra el div del select
+
     ?>
 
-    <div class="contenidoFormulario">
+    <!-- <div class="contenidoFormulario">
         <form method="POST">
             <fieldset>
-                <legend>Empleados</legend>
-                <p>Nombre: <input type="text" name="nombre_empleado"></p>
+                <legend>Dar herramienta</legend>
+                <p>Nombre: </p><input type="text" name="nombre_empleado">
                 <p>Apellidos: <input type="text" name="apellidos_empleado"></p>
                 <input type="submit" name="addEmple" value="Insertar Empleado">
             </fieldset>
@@ -73,7 +185,7 @@ if (!isset($id_empresa)) {
                 <input type="submit" name="addHerr" value="Insertar Herramienta">
             </fieldset>
         </form>
-    </div>
+    </div> -->
     <script src="javaScript/main.js"></script>
     <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 </body>

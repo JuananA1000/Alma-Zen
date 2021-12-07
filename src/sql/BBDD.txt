@@ -56,16 +56,19 @@ CREATE TABLE `almazen`.`emple_util` (
   `id_emple_util` int(11) NOT NULL AUTO_INCREMENT,
   `id_empleado` int(11) NOT NULL,
   `id_util` int(11) NOT NULL,
+  `id_empresa` int(11) NOT NULL,
   `fecha_hora` datetime NOT NULL,
   `is_devuelto` bit(1) NOT NULL,
-  `incidencia` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id_emple_util`),
   KEY `fk_empleherra_empleados_id` (`id_empleado`),
   KEY `fk_empleherra_utiles_id` (`id_util`),
+   KEY `fk_empleherra_empresas_id` (`id_empresa`),
   CONSTRAINT `fk_empleherra_empleados` FOREIGN KEY (`id_empleado`)
   REFERENCES `empleados` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_empleherra_utiles` FOREIGN KEY (`id_util`)
-  REFERENCES `utiles` (`id_util`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  REFERENCES `utiles` (`id_util`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_empleherra_empresas_id` FOREIGN KEY (`id_empresa`)
+  REFERENCES `empresas` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- A continuación, insertamos  datos a cada una de las tablas:
