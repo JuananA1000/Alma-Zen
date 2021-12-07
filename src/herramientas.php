@@ -3,9 +3,6 @@ include 'conect_class.php'; // MUY IMPORTANTE.
 include 'funciones.php';
 session_start();
 
-
-
-
 //Recogemos las variables de sesión
 $id_empresa = $_SESSION["id_empresa"];
 $nombre_empresa = $_SESSION["nombre_empresa"];
@@ -18,19 +15,16 @@ if (!isset($id_empresa)) {
 echo '<title>' .
     $nombre_empresa . '</title>';
 echo '<link rel="stylesheet" type="text/css" href="style.css" />'; //LLAMAMOS AL CSS
-
-
 echo '<h1>ALMA-ZEN</h1>';
-
-
-echo '<div class="topnav">
-<a  href="index.php">Home</a>
-<a href="empleados.php">Empleados</a>
-<a class="active" href="herramientas.php">Herramientas</a>
-<a href="vehiculos.php">Vehículos</a>
-<a href="asignar.php">Asignar</a>
-<a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
-<p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
+echo '
+<div class="topnav">
+    <a  href="index.php">Home</a>
+    <a href="empleados.php">Empleados</a>
+    <a class="active" href="herramientas.php">Herramientas</a>
+    <a href="vehiculos.php">Vehículos</a>
+    <a href="asignar.php">Asignar</a>
+    <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
+    <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
 </div>';
 
 if (isset($_POST['addHerr']) && $_POST['marca_util'] != "") {
@@ -62,7 +56,7 @@ echo "<table id='tablaHerramientas'><tr>
 
 while ($fila = $MyBBDD->extraerRegistro()) {
     $id_util = $fila['id_util'];
-    
+
     echo "<tr id='fila'><td>" . $fila['marca_util'] . "</td>" .
         "<td>" . $fila['modelo_util'] . "</td>" .
         "<td>" .   $fila['categoria_util'] . "</td>" .
@@ -109,20 +103,3 @@ echo '
 <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 ';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<script type="text/javascript" src="javaScript/main.js">
-
-
-    </script>
-    
-</body>
-</html>
