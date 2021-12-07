@@ -1,5 +1,6 @@
 <?php
 include 'conect_class.php'; // MUY IMPORTANTE.
+include 'funciones.php'; // MUY IMPORTANTE.
 session_start();
 
 //Recogemos las variables de sesión
@@ -10,15 +11,7 @@ $nombre_empresa = $_SESSION["nombre_empresa"];
 if (!isset($id_empresa)) {
     header("location: sesion/login.php");
 }
-//  else {
-//     echo "<h1>Bienvenido al AlmaZen de $nombre_empresa</h1>";
 
-//     //IMPRIME EL BOTON DE SALIR
-//     echo '
-//     <form method="post" action="sesion/salir.php">
-//         <input type="submit" value="Cerrar Sesión" name="cierra-sesion">
-//     </form>';
-// }
 
 ?>
 <!DOCTYPE html>
@@ -46,6 +39,7 @@ if (!isset($id_empresa)) {
     <a href="empleados.php">Empleados</a>
     <a href="herramientas.php">Herramientas</a>
     <a href="vehiculos.php">Vehículos</a>
+    <a href="asignar.php">Asignar</a>
     <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
     <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
     </div>';
