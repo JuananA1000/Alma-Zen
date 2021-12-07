@@ -60,8 +60,10 @@ while ($fila = $MyBBDD->extraerRegistro()) {
     echo "<tr id='fila'><td>" . $fila['marca_util'] . "</td>" .
         "<td>" . $fila['modelo_util'] . "</td>" .
         "<td>" .   $fila['categoria_util'] . "</td>" .
-        "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
-        "<td>" . $fila['estado_util'] . "</td>";
+        "<td>" . $fila['estado_util'] . "</td>".
+        "<td><input type='submit' value='✔️' name='tick'></td>" .
+        "<td><button name='statusOcup' class='btnOcupado'>🚫</button></td>" .
+        "<td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
 }
 echo "</table>";
 
@@ -80,11 +82,14 @@ echo '
         </div>
         <div>
             <label>Categoría</label><br>
-            <input type="text" name="categoria_util">
+            <input type="text" name="categoria_util"><br>
         </div>
         <div>    
             <label>Herramienta o Vehículo</label><br>
-            <input type="text" name="herramienta_vehiculo"></p>
+            <select name="herramienta_vehiculo">
+                <option value="herramienta">herramienta</option>
+                <option value="vehiculo">vehiculo</option>
+            </select>
         </div>
         <div>
         <label>Estado</label><br> 

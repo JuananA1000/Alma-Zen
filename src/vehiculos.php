@@ -43,6 +43,8 @@ echo "<table id='tablaHerramientas'><tr>
     <th>Modelo</th>
     <th>Categoría</th>
     <th>Estado</th>
+    <th>Libre</th>
+    <th>Ocupado</th>
     <th>Defectuoso</th></tr>";
 
 while ($fila = $MyBBDD->extraerRegistro()) {
@@ -50,13 +52,13 @@ while ($fila = $MyBBDD->extraerRegistro()) {
         "<td>" . $fila['modelo_util'] . "</td>" .
         "<td>" .   $fila['categoria_util'] . "</td>" .
         "<td>" . $fila['estado_util'] . "</td>" .
-        "<td><input type='submit' value='✔️' name='tick'></td></tr>";
-    // <td><button name='statusOcup' class='btnOcupado'>🚫</button></td>
-    // <td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
+        "<td><input type='submit' value='✔️' name='tick'></td>" .
+        "<td><button name='statusOcup' class='btnOcupado'>🚫</button></td>" .
+        "<td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
 }
 echo "</table>";
 
-echo'
+echo '
 <div class="contenidoFormulario">
 <form method="POST">
     <fieldset>
@@ -75,7 +77,10 @@ echo'
         </div>
         <div>    
             <label>Herramienta o Vehículo</label><br>
-            <input type="text" name="herramienta_vehiculo"></p>
+            <select name="herramienta_vehiculo">
+                <option value="vehiculo">vehiculo</option>
+                <option value="herramienta">herramienta</option>
+            </select>
         </div>
         <div>
         <label>Estado</label><br> 
