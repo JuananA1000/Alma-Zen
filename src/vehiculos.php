@@ -52,7 +52,7 @@ while ($fila = $MyBBDD->extraerRegistro()) {
         "<td>" . $fila['modelo_util'] . "</td>" .
         "<td>" .   $fila['categoria_util'] . "</td>" .
         "<td>" . $fila['estado_util'] . "</td>" .
-        "<td><input type='submit' value='✔️' name='tick'></td>" .
+        "<td><button name='statusOcup' class='btnLibre'>✔️</button></td>" .
         "<td><button name='statusOcup' class='btnOcupado'>🚫</button></td>" .
         "<td><button name='statusEstro' class='btnEstropeado'>🛠️</button></td></tr>";
 }
@@ -98,4 +98,5 @@ echo '
 </div>
 
 <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
+<script src="./javaScript/main.js"></script>
 ';
