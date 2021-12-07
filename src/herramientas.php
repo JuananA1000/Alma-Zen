@@ -67,12 +67,8 @@ while ($fila = $MyBBDD->extraerRegistro()) {
         "<td>" . $fila['modelo_util'] . "</td>" .
         "<td>" .   $fila['categoria_util'] . "</td>" .
         "<td>" .    $fila['herramienta_vehiculo'] . "</td>" .
-        "<td>" . $fila['estado_util'] . "</td>" .
-        "<td><input type='submit' value='✔️' name='tick'></td></tr>";
- 
+        "<td>" . $fila['estado_util'] . "</td>";
 }
-
-
 echo "</table>";
 
 echo '
@@ -110,10 +106,10 @@ echo '
     </fieldset>
 </form>
 </div>
-
 <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 ';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
