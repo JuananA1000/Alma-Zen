@@ -33,9 +33,6 @@ include '../conect_class.php'; // MUY IMPORTANTE.
             
         </form>
     </div>
-
-    
-    <footer>Juan Antonio Amil y Antonio Marín, 2021</footer>
 </body>
 
 </html>

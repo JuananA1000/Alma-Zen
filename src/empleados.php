@@ -55,14 +55,14 @@ echo '
            
             <div>
                 <label class="label">Nombre</label><br>
-                <input class="campo-empleados" placeholder="Nombre" type="text" name="nombre_empleado">
+                <input class="campo-insertar"  type="text" name="nombre_empleado">
             </div>
             <div>
                 <label class="label" id="apellidos">Apellidos</label><br>
-                <input class="campo-empleados" placeholder="Apellidos" type="text" name="apellidos_empleado">
+                <input class="campo-insertar"  type="text" name="apellidos_empleado">
             </div>
             <div>
-                <input id="insertar-empleado" type="submit" name="addEmple" value="Insertar Empleado">
+                <input id="btn-insertar" type="submit" name="addEmple" value="Insertar Empleado">
             </div>
         </div>
         </fieldset>
@@ -70,5 +70,3 @@ echo '
 </div>
 
 ';
-
-echo '<footer>Juan Antonio Amil y Antonio Marín, 2021</footer>';

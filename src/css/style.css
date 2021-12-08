@@ -1,253 +1,289 @@
-/* AZUL CLARO #2898c1; */
-
-
-/* AZUL OSCURO #217b9a; */
-
-body {
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #2898c1;
-}
-
-#divForm {
-    margin: 0;
-    padding: 0;
+        /* AZUL CLARO #2898c1; */
+        /* AZUL OSCURO #217b9a; */
+        
+        body {
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #2898c1;
+        }
+        
+        #divForm {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-size: 60px;
+            padding: 0px;
+            margin: 5px;
+        }
+        /* FORMULARIOS INSERTAR */
+        
+        label {
+            font-size: 25px;
+            color: white;
+        }
+        
+        .campo {
+            background-color: #FFF;
+            height: 30px;
+            width: 50%;
+            border-style: none;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            color: #217b9a;
+        }
+        
+        .campo-insertar {
+            background-color: #fff;
+            height: 30px;
+            width: 100%;
+            border-style: none;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            color: #003;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .campo-empleados::placeholder {
+            color: #003;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        p {
+            margin: 0%;
+            /* Eliminamos los márgenes en empleados y herramientas*/
+        }
+        
+        .cabecera {
+            border: 1px solid rgb(202, 202, 202);
+            padding: 10px;
+            box-shadow: rgb(156, 156, 156) 3px 3px 5px;
+        }
+        
+        .contenidoFormulario {
+            background-color: #2898c1;
+            margin-bottom: 1cm;
+            box-shadow: rgb(156, 156, 156) 3px 3px 5px;
+        }
+        
+        select {
+            height: 35px;
+            width: 45%;
+            border-radius: 50px;
+            padding-left: 10px;
+        }
+        
+        select ::-ms-expand {
+            /* background-color: red; */
+            display: none;
+            border-radius: 50px;
+        }
+        
+        input[type=submit] {
+            width: 80%;
+            height: 30px;
+            background-color: #fff;
+            font-size: 20px;
+            text-align: center;
+            border-style: none;
+            border-radius: 30px;
+            color: #217b9a;
+            padding: 6px;
+            margin: 2px 2px;
+            cursor: pointer;
+        }
+        
+        .btnRecoger {
+            width: 80%;
+            height: 40px;
+            background-color: #fff;
+            font-size: 20px;
+            text-align: center;
+            border-style: none;
+            border-radius: 30px;
+            color: #217b9a;
+            padding: 6px;
+            margin: 2px 2px;
+            cursor: pointer;
+        }
+        /* El contenido de la bbdd. Empleados y herramientas*/
+        
+        .tabla {
+            background-color: white;
+            text-align: center;
+            border-radius: 20px 0 0 0;
+            margin-bottom: 40px;
+        }
+        
+        .tabla,
+        th {
+            font-size: larger;
+        }
+        
+        .tabla,
+        th,
+        tr,
+        td {
+            /* border: 1px solid #2898c1; */
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        
+        tr:nth-child(even) {
+            border-radius: 100px;
+            background-color: #ccf;
+        }
+        
+        tr:nth-child(odd) .btnRecoger {
+            background-color: #ccf;
+            color: #fff;
+        }
+        
+        #tabla-empleados {
+            margin-left: 35%;
+            margin-right: 35%;
+        }
+        
+        footer {
+            /*TUTORIAL footer siempre abajo: https://www.youtube.com/watch?v=PSD5pFi6bx4*/
+            border: rgb(202, 202, 202) 1px solid;
+            margin-top: auto;
+            box-shadow: rgb(156, 156, 156) 3px 3px 5px;
+        }
+        /* INICIO NAVBAR */
+        
+        .topnav {
+            overflow: visible;
+            background-color: #fff;
+            height: 49.6px;
+            box-shadow: rgb(156, 156, 156) 3px 3px 5px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .topnav a {
+            float: left;
+            color: #2898c1;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px 16px;
+            font-size: 18px;
+        }
+        
+        .topnav a:hover {
+            background-color: #aaf;
+            color: #003;
+        }
+        
+        .topnav a.active {
+            background-color: #2898c1;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .topnav p.nombre_empresa {
+            font-weight: bold;
+            float: right;
+            color: #217b9a;
+            text-align: center;
+            padding-right: 5px;
+            font-size: 45px;
+            line-height: 50px;
+            padding-right: 20px;
+        }
+        
+        .topnav a.cerrar-sesion {
+            float: right;
+            /* padding-right: 15px; */
+            padding: 9px 9px;
+        }
+        /* FIN NAVBAR */
+        /* INICIO DIV Y ALINEADOS */
+        
+        .formulario {
+            margin-top: 20px;
+            margin-left: 35%;
+            margin-right: 35%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .formulario fieldset {
+            background-color: #2898c1;
+            border-color: #fff;
+            border-style: none;
+            border-width: 10px;
+            border-radius: 20px 20px 0px 0px;
+        }
+        
+        .columna {
+            display: flex;
+            /* background-color: red; */
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .linea>div {
+            flex: auto;
+            margin: 2px;
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
+        
+        #btn-insertar {
+            background-color: #fff;
+            width: 250px;
+        }
+        /* FIN DIV Y ALINEADOS */
+        
+        .asignadores {
+            display: flex;
+            background-color: #2898c1;
+            width: 100%;
+            align-content: space-between;
+            flex-wrap: nowrap;
+        }
+        /* .asignadores div {} */
+        
+        .asigna {
+            flex-wrap: wrap;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .pretabla {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 0px;
+            font-size: 30px;
+        }
+        /* input[type=submit] {
+    width: 80%;
+} */
+        /* .asigna-vehiculos {
+    background-color: #f00;
+    flex-wrap: wrap;
     width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-h1 {
-    color: #fff;
-    text-align: center;
-    font-size: 60px;
-    padding: 0px;
-    margin: 5px;
-}
-
-
-/* FORMULARIOS INSERTAR */
-
-label {
-    font-size: 25px;
-    color: white;
-}
-
-.campo {
-    background-color: #FFF;
-    height: 30px;
-    width: 50%;
-    border-style: none;
-    border-radius: 30px;
-    margin-bottom: 20px;
-    color: #217b9a;
-    font-size: 25px;
-}
-
-.campo-empleados {
-    background-color: #fff;
-    height: 45px;
-    width: 270px;
-    border-style: none;
-    border-radius: 30px;
-    margin-bottom: 20px;
-    color: #000;
-    font-size: 25px;
-    text-align: center;
-}
-
-.campo-empleados::placeholder {
-    color: #000;
-    font-size: 20px;
-    text-align: center;
-}
-
-p {
-    margin: 0%;
-    /* Eliminamos los márgenes en empleados y herramientas*/
-}
-
-.cabecera {
-    border: 1px solid rgb(202, 202, 202);
-    padding: 10px;
-    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
-}
-
-.contenidoFormulario {
-    background-color: #2898c1;
-    margin-bottom: 1cm;
-    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
-}
-
-select {
-    height: 35px;
-    width: 50%;
-    border-radius: 50px;
-}
-
-select ::-ms-expand {
-    /* background-color: red; */
-    display: none;
-    border-radius: 50px;
-}
-
-input[type=submit] {
-    width: 30%;
-    height: 40px;
-    background-color: #fff;
-    font-size: 20px;
-    text-align: center;
-    border-style: none;
-    border-radius: 30px;
-    color: #217b9a;
-    padding: 6px;
-    margin: 2px 2px;
-    cursor: pointer;
-}
-
-
-/* El contenido de la bbdd. Empleados y herramientas*/
-
-.tabla {
-    background-color: white;
-    text-align: center;
-    border-radius: 20px 0 0 0;
-    margin-bottom: 40px;
-}
-
-.tabla,
-th {
-    font-size: larger;
-}
-
-.tabla,
-th,
-tr,
-td {
-    /* border: 1px solid #2898c1; */
-    border-collapse: collapse;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-}
-
-tr:nth-child(even) {
-    background-color: #ccf;
-    border-radius: 100px;
-}
-
-#tabla-empleados {
-    margin-left: 35%;
-    margin-right: 35%;
-}
-
-footer {
-    /*TUTORIAL footer siempre abajo: https://www.youtube.com/watch?v=PSD5pFi6bx4*/
-    border: rgb(202, 202, 202) 1px solid;
-    margin-top: auto;
-    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
-}
-
-
-/* INICIO NAVBAR */
-
-.topnav {
-    overflow: visible;
-    background-color: #fff;
-    height: 49.6px;
-    box-shadow: rgb(156, 156, 156) 3px 3px 5px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.topnav a {
-    float: left;
-    color: #2898c1;
-    text-align: center;
-    text-decoration: none;
-    padding: 14px 16px;
-    font-size: 18px;
-}
-
-.topnav a:hover {
-    background-color: #aaf;
-    color: black;
-}
-
-.topnav a.active {
-    background-color: #2898c1;
-    color: white;
-    font-weight: bold;
-}
-
-.topnav p.nombre_empresa {
-    font-weight: bold;
-    float: right;
-    color: #217b9a;
-    text-align: center;
-    padding-right: 5px;
-    font-size: 45px;
-    line-height: 50px;
-    padding-right: 20px;
-}
-
-.topnav a.cerrar-sesion {
-    float: right;
-    /* padding-right: 15px; */
-    padding: 9px 9px;
-}
-
-
-/* FIN NAVBAR */
-
-
-/* INICIO DIV Y ALINEADOS */
-
-.formulario {
-    margin-top: 20px;
-    margin-left: 35%;
-    margin-right: 35%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.formulario fieldset {
-    background-color: #2898c1;
-    border-color: #fff;
-    border-style: none;
-    border-width: 10px;
-    border-radius: 20px 20px 0px 0px;
-}
-
-.columna {
-    display: flex;
-    /* background-color: red; */
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.linea>div {
-    flex: auto;
-    margin: 2px;
-    padding: 20px;
-    font-size: 30px;
-    text-align: center;
-}
-
-#insertar-empleado {
-    width: 200px;
-}
-
-
-/* FIN DIV Y ALINEADOS */
+} */
