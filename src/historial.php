@@ -24,7 +24,7 @@ echo '<div class="topnav">
 <a href="empleados.php">Empleados</a>
 <a  href="herramientas.php">Herramientas</a>
 <a href="vehiculos.php">Vehículos</a>
-<a class="active" href="asignar.php">Asignar</a>
+<a class="active" href="historial.php">Historial</a>
 <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
 <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
 </div>';
@@ -115,7 +115,8 @@ echo "</table>";
 // --------TABLA DEVUELTOS-------------
 // ------------------------------------
 
-$sql = "SELECT empleados.nombre_empleado, empleados.apellidos_empleado, utiles.marca_util, utiles.modelo_util, utiles.categoria_util, emple_util.fecha_hora, emple_util.is_devuelto
+$sql = "SELECT empleados.nombre_empleado, empleados.apellidos_empleado, utiles.marca_util, utiles.modelo_util, utiles.id_util,
+                 utiles.categoria_util, emple_util.fecha_hora, emple_util.is_devuelto
 FROM ((almazen.emple_util
 INNER JOIN almazen.empleados ON almazen.emple_util.id_empleado = almazen.empleados.id_empleado)
 INNER JOIN almazen.utiles ON almazen.emple_util.id_util = almazen.utiles.id_util)
@@ -151,9 +152,12 @@ echo "</table>";
 //SI PULSAMOS "RECOGER"
 if (isset($_POST['btnRecoger'])){
     $id = $_POST['id'];
+    $id_util = $_POST['id_util'];
  
-    $sql = "UPDATE almazen.emple_util SET almazen.emple_util.is_devuelto=1 WHERE almazen.emple_util.id_emple_util=$id;";
+    $isDevuelto = "UPDATE almazen.emple_util SET almazen.emple_util.is_devuelto=1 WHERE almazen.emple_util.id_emple_util=$id;";
+    $cambioEstado = "UPDATE almazen.utiles SET almazen.utiles.estado_util='libre' WHERE almazen.utiles.id_util=$id_util;";   
         
-    $MyBBDD->consulta($sql);
+    $MyBBDD->consulta($isDevuelto);
+    $MyBBDD->consulta($cambioEstado);
     header("Refresh:0");
 }

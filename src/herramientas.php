@@ -21,7 +21,7 @@ echo '
     <a href="empleados.php">Empleados</a>
     <a class="active" href="herramientas.php">Herramientas</a>
     <a href="vehiculos.php">Vehículos</a>
-    <a href="asignar.php">Asignar</a>
+    <a href="historial.php">Historial</a>
     <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
     <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
 </div>';
@@ -46,7 +46,7 @@ echo "<table class='tabla'><tr>
     <th>Marca</th>
     <th>Modelo</th>
     <th>Categoría</th>
-    <th>Eestado</th>
+    <th>Estado</th>
     
     <th>Llevar a reparar</th></tr>";
 
@@ -76,7 +76,7 @@ echo "<table class='tabla'><tr>
     <th>Marca</th>
     <th>Modelo</th>
     <th>Categoría</th>
-    <th>Eestado</th>
+    <th>Estado</th>
     
     <th>Devolver herramienta</th></tr>";
 

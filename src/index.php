@@ -38,7 +38,7 @@ if (!isset($id_empresa)) {
     <a href="empleados.php">Empleados</a>
     <a href="herramientas.php">Herramientas</a>
     <a href="vehiculos.php">Vehículos</a>
-    <a href="asignar.php">Asignar</a>
+    <a href="historial.php">Historial</a>
     <a class="cerrar-sesion" href="sesion/salir.php"><img src="../img/logo-azul-32.png"></a>
     <p class="nombre_empresa">' . strtoupper($nombre_empresa) . '</p>
     </div>';
@@ -156,11 +156,14 @@ if (isset($_POST['btn-asignar']) && $_POST['empleado'] != "" && $_POST['util'] !
     $id_util = $_POST['util'];
     $fecha_hora = date("Y-m-d H:i:s");
  
-    $sql = "INSERT INTO emple_util (id_empleado, id_util, id_empresa, fecha_hora, is_devuelto) 
-    VALUES ('$id_empleado','$id_util', '$id_empresa','$fecha_hora', 0);
-";
+    $relacion = "INSERT INTO emple_util (id_empleado, id_util, id_empresa, fecha_hora, is_devuelto) 
+    VALUES ('$id_empleado','$id_util', '$id_empresa','$fecha_hora', 0);";
+
+    $cambioEstado = "UPDATE almazen.utiles SET almazen.utiles.estado_util='ocupado' WHERE almazen.utiles.id_util=$id_util;";   
+      
         
-    $MyBBDD->consulta($sql);
+    $MyBBDD->consulta($relacion);
+    $MyBBDD->consulta($cambioEstado);
 }
     ?>
 
