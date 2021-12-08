@@ -88,7 +88,7 @@ if (!isset($id_empresa)) {
             $marca_util = $fila['marca_util'];
             $modelo_util = $fila['modelo_util'];
           
-            echo" <option value='$id_util'>$categoria_util $marca_util  $modelo_util</option>";
+            echo" <option name='util' value='$id_util'>$categoria_util $marca_util  $modelo_util</option>";
         }
         echo"</select></div> <br>
         <div><input type='submit' value='Asignar herramienta' name='btn-asignar'></form></div>"; 
@@ -139,7 +139,7 @@ if (!isset($id_empresa)) {
             $marca_util = $fila['marca_util'];
             $modelo_util = $fila['modelo_util'];
           
-            echo" <option value='$id_util'>$categoria_util $marca_util  $modelo_util</option>";
+            echo" <option name='util' value='$id_util'>$categoria_util $marca_util  $modelo_util</option>";
         }
         echo"</select></div>
         <br> 
@@ -164,6 +164,7 @@ if (isset($_POST['btn-asignar']) && $_POST['empleado'] != "" && $_POST['util'] !
         
     $MyBBDD->consulta($relacion);
     $MyBBDD->consulta($cambioEstado);
+    header("Refresh:0");
 }
     ?>
 

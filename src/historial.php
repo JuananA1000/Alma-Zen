@@ -38,7 +38,7 @@ echo '<div class="topnav">
 // -----------------------------------
 
 $sql = "SELECT empleados.nombre_empleado, empleados.apellidos_empleado, utiles.marca_util, utiles.modelo_util, 
-                utiles.categoria_util, emple_util.fecha_hora, emple_util.is_devuelto, emple_util.id_emple_util
+                utiles.categoria_util, emple_util.fecha_hora, emple_util.is_devuelto, emple_util.id_emple_util, emple_util.id_util
 FROM ((almazen.emple_util
 INNER JOIN almazen.empleados ON almazen.emple_util.id_empleado = almazen.empleados.id_empleado)
 INNER JOIN almazen.utiles ON almazen.emple_util.id_util = almazen.utiles.id_util)
@@ -57,14 +57,16 @@ echo "<table class='tabla'><tr>
 
 while ($fila = $MyBBDD->extraerRegistro()) {
     // AQUÍ SE IMPRIMIRÍA LA TABLA
-    $id = $fila['id_emple_util'];
+    $id_emple_util = $fila['id_emple_util'];
+    $id_util = $fila['id_util'];
     echo "<tr id='fila'><td>" . $fila['nombre_empleado']." ".$fila['apellidos_empleado'] ."</td>" .    
-        "<td>" . $fila['categoria_util'] . "</td>" .
         "<td>" . $fila['marca_util'] . "</td>" .
-        "<td>" .   $fila['modelo_util'] . "</td>" .
+        "<td>" . $fila['modelo_util'] . "</td>" .    
+        "<td>" . $fila['categoria_util'] . "</td>" .
         "<td>" . $fila['fecha_hora'] . "</td>" .
         "<form  method='post'>".
-        "<input name='id' type='hidden' value=$id>".
+        "<input name='id_emple_util' type='hidden' value=$id_emple_util>".
+        "<input name='id_util' type='hidden' value=$id_util>".
         "<td><input class='btnRecoger' type='submit' value='Recoger' name='btnRecoger'></td></tr>".
         "</form>";
     
@@ -77,7 +79,7 @@ echo "</table>";
 // ------------------------------------
 
 $sql = "SELECT empleados.nombre_empleado, empleados.apellidos_empleado, utiles.marca_util, utiles.modelo_util, 
-                utiles.categoria_util, emple_util.fecha_hora, emple_util.is_devuelto, emple_util.id_emple_util
+                utiles.categoria_util, emple_util.fecha_hora, emple_util.is_devuelto, emple_util.id_emple_util, emple_util.id_util
 FROM ((almazen.emple_util
 INNER JOIN almazen.empleados ON almazen.emple_util.id_empleado = almazen.empleados.id_empleado)
 INNER JOIN almazen.utiles ON almazen.emple_util.id_util = almazen.utiles.id_util)
@@ -95,15 +97,17 @@ echo "<table class='tabla'><tr>
     <th>Recoger</th></tr>";
 
 while ($fila = $MyBBDD->extraerRegistro()) {
-    $id = $fila['id_emple_util'];
+    $id_emple_util = $fila['id_emple_util'];
+    $id_util = $fila['id_util'];
     // AQUÍ SE IMPRIMIRÍA LA TABLA
     echo "<tr id='fila'><td>" . $fila['nombre_empleado']." ".$fila['apellidos_empleado'] ."</td>" .    
-        "<td>" . $fila['categoria_util'] . "</td>" .
-        "<td>" . $fila['marca_util'] . "</td>" .
-        "<td>" .   $fila['modelo_util'] . "</td>" .
-         "<td>" . $fila['fecha_hora'] . "</td>" .
+    "<td>" . $fila['marca_util'] . "</td>" .
+    "<td>" . $fila['modelo_util'] . "</td>" .    
+    "<td>" . $fila['categoria_util'] . "</td>" .
+    "<td>" . $fila['fecha_hora'] . "</td>" .
          "<form  method='post'>".
-         "<input name='id' type='hidden' value=$id>".
+         "<input name='id_emple_util' type='hidden' value=$id_emple_util>".
+         "<input name='id_util' type='hidden' value=$id_util>".
          "<td><input class='btnRecoger' type='submit' value='Recoger' name='btnRecoger'></td></tr>".
          "</form>";
     
@@ -138,12 +142,10 @@ while ($fila = $MyBBDD->extraerRegistro()) {
 
     // AQUÍ SE IMPRIMIRÍA LA TABLA
     echo "<tr id='fila'><td>" . $fila['nombre_empleado']." ".$fila['apellidos_empleado'] ."</td>" .    
-        "<td>" . $fila['categoria_util'] . "</td>" .
         "<td>" . $fila['marca_util'] . "</td>" .
-        "<td>" .   $fila['modelo_util'] . "</td>" .
+        "<td>" .   $fila['modelo_util'] . "</td>" .    
+        "<td>" . $fila['categoria_util'] . "</td>" .
          "<td>" . $fila['fecha_hora'] . "</td>" .
-
-      
         "<td>Devuelto</td></tr>";
     
 }
@@ -151,12 +153,12 @@ echo "</table>";
 
 //SI PULSAMOS "RECOGER"
 if (isset($_POST['btnRecoger'])){
-    $id = $_POST['id'];
+    $id_emple_util = $_POST['id_emple_util'];
     $id_util = $_POST['id_util'];
  
-    $isDevuelto = "UPDATE almazen.emple_util SET almazen.emple_util.is_devuelto=1 WHERE almazen.emple_util.id_emple_util=$id;";
+    $isDevuelto = "UPDATE almazen.emple_util SET almazen.emple_util.is_devuelto=1 WHERE almazen.emple_util.id_emple_util=$id_emple_util;";
     $cambioEstado = "UPDATE almazen.utiles SET almazen.utiles.estado_util='libre' WHERE almazen.utiles.id_util=$id_util;";   
-        
+       
     $MyBBDD->consulta($isDevuelto);
     $MyBBDD->consulta($cambioEstado);
     header("Refresh:0");

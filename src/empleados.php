@@ -27,6 +27,7 @@ if (isset($_POST['addEmple']) &&  $_POST['nombre_empleado'] != "") {
             VALUES ('$nombre_empleado','$apellidos_empleado', '$id_empresa');
         ";
     $MyBBDD->consulta($sql);
+    header("Refresh:0");
 }
 
 $sql = "SELECT * FROM empleados
